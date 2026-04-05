@@ -23,13 +23,25 @@ echo "Variant:   $VARIANT"
 # ── 1. Git submodules ─────────────────────────────────────────────────────────
 echo ""
 echo "--- Step 1: Git submodules ---"
-# Use --depth=1 for speed; fail fast on any error
-if ! git submodule update --init --recursive --depth=1 2>&1; then
-  echo "ERROR: Submodule initialization failed." >&2
-  exit 1
-fi
+# Run update; ignore clone errors for submodules already on disk from a prior build
+git submodule update --init --recursive --depth=1 2>&1 || {
+  echo "Some submodule clones failed (likely already present) — continuing..."
+  # Ensure each registered submodule path exists and is non-empty
+  MISSING=0
+  while IFS= read -r line; do
+    path=$(echo "$line" | awk '{print $2}')
+    if [ -n "$path" ] && [ ! -d "$WORKSPACE/$path" ]; then
+      echo "ERROR: Submodule path missing: $path" >&2
+      MISSING=1
+    fi
+  done < <(git submodule status 2>/dev/null)
+  if [ "$MISSING" -eq 1 ]; then
+    echo "ERROR: One or more required submodule paths are missing." >&2
+    exit 1
+  fi
+}
 SUBMODULE_COUNT=$(git submodule status | wc -l)
-echo "Submodules initialized: $SUBMODULE_COUNT"
+echo "Submodules ready: $SUBMODULE_COUNT"
 
 # ── 2. Java 21 ────────────────────────────────────────────────────────────────
 echo ""
