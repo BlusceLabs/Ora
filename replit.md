@@ -20,10 +20,19 @@
 - XcodeGen config: `ios/project.yml`
 - Build on Mac: `bash scripts/build-jamii-ios.sh [simulator|device]`
 
-### Web App (built ✅)
+### Web App (built ✅) — Phase 1 complete
 - Source: `web/` directory — React + Vite SPA
-- Pages: Auth, Chat List, Chat View, Settings
-- Brand: dark theme (#17212b bg, #2AABEE blue)
+- **AppShell**: 3-column desktop layout (sidebar + feed + right panel), bottom nav on mobile
+- **Pages:** Auth (multi-step: welcome → phone → code → feed), Feed, Search, Notifications, Profile, Chat List, Chat View, Settings
+- **Feed:** For You / Following / Live tabs, Stories bar, create-post quick bar, infinite post list
+- **PostCard:** likes/comments/reposts/saves toggles, hashtag highlighting, thread indicator, inline reply
+- **CreatePostModal:** 25K char limit, SVG ring counter, tabs (post/thread/poll), hashtag suggestions, toolbar, audience selector
+- **StoriesBar + StoryViewer:** Instagram gradient rings, progress bars, tap navigation, hold-to-pause
+- **Notifications:** unread badge, filter tabs (All/Mentions/Likes/Follows), mark-all-read
+- **Profile:** banner, stats, follower counts, content tabs (Posts/Replies/Media/Likes/Saves)
+- **Search:** trending tags, who-to-follow, live search with filter chips
+- **Data:** mock feed posts (6), notifications (8), trending (7), stories, chats
+- Brand: dark theme (#17212b bg, #2AABEE blue), CSS vars `--jamii-*`
 - Dev server: `cd web && pnpm run dev` (port 5000)
 - Workflow: "Start application" runs Vite dev server
 
