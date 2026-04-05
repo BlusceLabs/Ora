@@ -5,16 +5,28 @@ import CreatePostModal from './CreatePostModal';
 const NAV = [
   { id: 'feed',          path: '/feed',           icon: '🏠', label: 'Home' },
   { id: 'search',        path: '/search',          icon: '🔍', label: 'Search' },
-  { id: 'create',        path: null,               icon: '➕', label: 'Create', isAction: true },
+  { id: 'reels',         path: '/reels',           icon: '🎬', label: 'Reels' },
+  { id: 'spaces',        path: '/spaces',          icon: '🎙️', label: 'Spaces' },
   { id: 'notifications', path: '/notifications',   icon: '🔔', label: 'Alerts' },
   { id: 'messages',      path: '/chats',           icon: '✉️', label: 'Messages' },
+  { id: 'create',        path: null,               icon: '➕', label: 'Create', isAction: true },
+];
+
+const MOBILE_NAV = [
+  { id: 'feed',     path: '/feed',   icon: '🏠', label: 'Home' },
+  { id: 'reels',    path: '/reels',  icon: '🎬', label: 'Reels' },
+  { id: 'create',   path: null,      icon: '➕', label: 'Create', isAction: true },
+  { id: 'spaces',   path: '/spaces', icon: '🎙️', label: 'Spaces' },
+  { id: 'messages', path: '/chats',  icon: '✉️', label: 'Msgs' },
 ];
 
 const SIDEBAR_EXTRA = [
-  { path: '/profile',  icon: '👤', label: 'Profile' },
-  { path: '/spaces',   icon: '🎙️', label: 'Spaces' },
-  { path: '/lists',    icon: '📋', label: 'Lists' },
-  { path: '/settings', icon: '⚙️', label: 'Settings' },
+  { path: '/profile',       icon: '👤', label: 'Profile' },
+  { path: '/creator',       icon: '🎬', label: 'Creator Studio' },
+  { path: '/shop',          icon: '🛍️', label: 'Shop' },
+  { path: '/lists',         icon: '📋', label: 'Lists' },
+  { path: '/notifications', icon: '🔔', label: 'Notifications' },
+  { path: '/settings',      icon: '⚙️', label: 'Settings' },
 ];
 
 export default function AppShell({ children }) {
@@ -120,7 +132,7 @@ export default function AppShell({ children }) {
         </div>
 
         {/* Who to follow */}
-        <div style={{ background: 'var(--jamii-surface)', borderRadius: 20, padding: '16px', border: '1px solid var(--jamii-border)' }}>
+        <div style={{ background: 'var(--jamii-surface)', borderRadius: 20, padding: '16px', marginBottom: 20, border: '1px solid var(--jamii-border)' }}>
           <h3 style={{ fontSize: 18, fontWeight: 800, marginBottom: 14 }}>Who to follow</h3>
           {[
             { name: 'BlusceLabs', username: '@bluscelabs', initials: 'BL', color: '#2AABEE' },
@@ -137,6 +149,27 @@ export default function AppShell({ children }) {
             </div>
           ))}
         </div>
+
+        {/* Live spaces widget */}
+        <div style={{ background: 'var(--jamii-surface)', borderRadius: 20, padding: '16px', border: '1px solid var(--jamii-border)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
+            <h3 style={{ fontSize: 18, fontWeight: 800 }}>Live Spaces</h3>
+            <span style={{ fontSize: 11, background: '#ff4136', color: '#fff', padding: '2px 8px', borderRadius: 20, fontWeight: 700 }}>LIVE</span>
+          </div>
+          {[
+            { name: 'Tech Talk with BL', host: '@bluscelabs', listeners: 1204 },
+            { name: 'Music Vibes', host: '@djmaina', listeners: 876 },
+          ].map(space => (
+            <div key={space.name} onClick={() => navigate('/spaces')} style={{ padding: '10px 0', borderBottom: '1px solid var(--jamii-border)', cursor: 'pointer' }}>
+              <div style={{ fontWeight: 600, fontSize: 14 }}>{space.name}</div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 3 }}>
+                <span style={{ color: 'var(--jamii-text-muted)', fontSize: 12 }}>{space.host}</span>
+                <span style={{ color: 'var(--jamii-text-muted)', fontSize: 12 }}>🎧 {space.listeners.toLocaleString()}</span>
+              </div>
+            </div>
+          ))}
+          <button onClick={() => navigate('/spaces')} style={{ marginTop: 12, width: '100%', padding: '8px', borderRadius: 20, background: 'var(--jamii-blue)', color: '#fff', border: 'none', cursor: 'pointer', fontWeight: 700, fontSize: 14 }}>Browse Spaces</button>
+        </div>
       </aside>
 
       {/* ── Mobile bottom nav ── */}
@@ -146,7 +179,7 @@ export default function AppShell({ children }) {
         borderTop: '1px solid var(--jamii-border)',
         display: 'flex', padding: '8px 0 env(safe-area-inset-bottom, 8px)',
       }} className="show-on-mobile">
-        {NAV.map(item => (
+        {MOBILE_NAV.map(item => (
           <button key={item.id}
             onClick={() => item.isAction ? setShowCreate(true) : navigate(item.path)}
             style={{

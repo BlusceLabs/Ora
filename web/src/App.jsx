@@ -10,6 +10,9 @@ import NotificationsPage from './pages/NotificationsPage';
 import ProfilePage from './pages/ProfilePage';
 import SpacesPage from './pages/SpacesPage';
 import ReelsPage from './pages/ReelsPage';
+import ShopPage from './pages/ShopPage';
+import ListsPage from './pages/ListsPage';
+import CreatorStudioPage from './pages/CreatorStudioPage';
 import AppShell from './components/AppShell';
 
 function AppLayout({ children }) {
@@ -31,6 +34,9 @@ export default function App() {
           <Route path="/chats/:id" element={<AppLayout><ChatViewPage /></AppLayout>} />
           <Route path="/spaces" element={<AppLayout><SpacesPage /></AppLayout>} />
           <Route path="/reels" element={<AppLayout><ReelsPage /></AppLayout>} />
+          <Route path="/shop" element={<AppLayout><ShopPage /></AppLayout>} />
+          <Route path="/lists" element={<AppLayout><ListsPage /></AppLayout>} />
+          <Route path="/creator" element={<AppLayout><CreatorStudioPage /></AppLayout>} />
           <Route path="/settings" element={<AppLayout><SettingsPage /></AppLayout>} />
 
           <Route path="*" element={<Navigate to="/" replace />} />

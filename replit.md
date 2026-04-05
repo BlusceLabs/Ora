@@ -20,18 +20,28 @@
 - XcodeGen config: `ios/project.yml`
 - Build on Mac: `bash scripts/build-jamii-ios.sh [simulator|device]`
 
-### Web App (built ✅) — Phase 1 complete
+### Web App (built ✅) — Phase 2 complete
 - Source: `web/` directory — React + Vite SPA
-- **AppShell**: 3-column desktop layout (sidebar + feed + right panel), bottom nav on mobile
-- **Pages:** Auth (multi-step: welcome → phone → code → feed), Feed, Search, Notifications, Profile, Chat List, Chat View, Settings
-- **Feed:** For You / Following / Live tabs, Stories bar, create-post quick bar, infinite post list
+- **AppShell**: 3-column desktop layout (sidebar + feed + right panel with trending/follow/Live Spaces widget), mobile bottom nav (Home/Reels/Create/Spaces/Msgs)
+- **Desktop sidebar NAV**: Home, Search, Reels, Spaces, Alerts, Messages, Create Post; SIDEBAR_EXTRA: Profile, Creator Studio, Shop, Lists, Notifications, Settings
+- **Pages (12 total):**
+  - Auth (multi-step: welcome → phone → code → feed)
+  - Feed — For You / Following / Live tabs, Stories bar, create-post quick bar
+  - Search — trending, who-to-follow, live search with filters
+  - Notifications — unread badge, filter tabs, mark-all-read
+  - Profile — banner, stats, content tabs
+  - Chat List — conversation list with last message/time
+  - Chat View — two-column desktop layout, message thread
+  - Spaces — live audio rooms, schedule, speaker management
+  - Reels — TikTok-style vertical video feed
+  - Shop — marketplace with categories, search, cart/wishlist, KES pricing, featured banners
+  - Lists — Your Lists + Discover tabs, create modal with private toggle, follow toggle
+  - Creator Studio — Overview (stats, charts, audience insights), My Content, Monetize (Creator Fund/Subscriptions/Tips/Affiliate toggles), Tools (Analytics/Schedule/Media Kit/Collabs)
+  - Settings
 - **PostCard:** likes/comments/reposts/saves toggles, hashtag highlighting, thread indicator, inline reply
 - **CreatePostModal:** 25K char limit, SVG ring counter, tabs (post/thread/poll), hashtag suggestions, toolbar, audience selector
 - **StoriesBar + StoryViewer:** Instagram gradient rings, progress bars, tap navigation, hold-to-pause
-- **Notifications:** unread badge, filter tabs (All/Mentions/Likes/Follows), mark-all-read
-- **Profile:** banner, stats, follower counts, content tabs (Posts/Replies/Media/Likes/Saves)
-- **Search:** trending tags, who-to-follow, live search with filter chips
-- **Data:** mock feed posts (6), notifications (8), trending (7), stories, chats
+- **Routes:** /feed, /search, /notifications, /profile, /chats, /chats/:id, /spaces, /reels, /shop, /lists, /creator, /settings
 - Brand: dark theme (#17212b bg, #2AABEE blue), CSS vars `--jamii-*`
 - Dev server: `cd web && pnpm run dev` (port 5000)
 - Workflow: "Start application" runs Vite dev server
