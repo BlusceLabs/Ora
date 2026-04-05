@@ -2,7 +2,9 @@
 
 ## Project Overview
 
-**Ora** is a messaging app for Android and iOS by BlusceLabs. The Android app is built on the [TGX-Android/Telegram-X](https://github.com/TGX-Android/Telegram-X) open-source codebase using [TDLib](https://core.telegram.org/tdlib). The iOS app is a native SwiftUI application.
+**Ora** is a super-app by BlusceLabs — combining messaging, social feed, stories, reels, creator tools, and commerce into one platform. The Android app is built on the [TGX-Android/Telegram-X](https://github.com/TGX-Android/Telegram-X) open-source codebase using [TDLib](https://core.telegram.org/tdlib). The iOS app is a native SwiftUI application. The algorithmic feed is powered by the BlusceLabs x-algorithm (Grok-based transformer recommendation system).
+
+**Super-app pillars:** Messages · Feed · Stories · Spaces · Creator · Commerce · Platform
 
 - **GitHub:** https://github.com/BlusceLabs/Ora
 - **Package ID:** com.bluscelabs.ora
@@ -78,6 +80,7 @@ All standard submodules are initialized. BlusceLabs forks are cloned directly:
 | `tdlib/source/td` | tdlib/td (TDLib C++ source, for version info) |
 | `vkryl/leveldb/jni/leveldb` | google/leveldb |
 | `vkryl/leveldb/jni/jni-utils` | TGX-Android/jni-utils |
+| `algorithm/x-algorithm` | BlusceLabs/x-algorithm (Grok-based For You feed, Rust) |
 
 ### Blockers for Full Build
 
@@ -144,6 +147,11 @@ buildSrc/               # Custom Gradle plugins (tgx-config, tgx-module)
 tdlib/                  # TGX-Android/tdlib: Gradle wrapper with pre-built TDLib .so files
 vkryl/                  # Utility libraries (android, core, leveldb, td)
 extension/              # Extension module bridge
+algorithm/              # Ora recommendation engine
+  x-algorithm/          # BlusceLabs/x-algorithm — For You feed (Grok transformer, Rust)
+    candidate-pipeline/ # Retrieval & filtering stage
+    home-mixerphoenix/  # Ranking & mixing (Phoenix model)
+    thunder/            # In-network post fetching
 scripts/                # Build helper scripts
   build-ora.sh          # Convenience build script
   setup.sh              # Original TGX setup script

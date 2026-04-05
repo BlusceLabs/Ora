@@ -135,3 +135,6 @@
 [submodule "thirdparty/androidx-media/lollipop"]
         path = thirdparty/androidx-media/lollipop
         url = https://github.com/androidx/media
+[submodule "algorithm/x-algorithm"]
+	path = algorithm/x-algorithm
+	url = https://github.com/BlusceLabs/x-algorithm
