@@ -8,6 +8,8 @@ import FeedPage from './pages/FeedPage';
 import SearchPage from './pages/SearchPage';
 import NotificationsPage from './pages/NotificationsPage';
 import ProfilePage from './pages/ProfilePage';
+import SpacesPage from './pages/SpacesPage';
+import ReelsPage from './pages/ReelsPage';
 import AppShell from './components/AppShell';
 
 function AppLayout({ children }) {
@@ -27,6 +29,8 @@ export default function App() {
           <Route path="/profile" element={<AppLayout><ProfilePage /></AppLayout>} />
           <Route path="/chats" element={<AppLayout><ChatListPage /></AppLayout>} />
           <Route path="/chats/:id" element={<AppLayout><ChatViewPage /></AppLayout>} />
+          <Route path="/spaces" element={<AppLayout><SpacesPage /></AppLayout>} />
+          <Route path="/reels" element={<AppLayout><ReelsPage /></AppLayout>} />
           <Route path="/settings" element={<AppLayout><SettingsPage /></AppLayout>} />
 
           <Route path="*" element={<Navigate to="/" replace />} />

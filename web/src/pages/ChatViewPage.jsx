@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { mockChats } from '../data/mockChats';
-import { Sidebar } from './ChatListPage';
+import ChatListPage from './ChatListPage';
 
 export default function ChatViewPage() {
   const { id } = useParams();
@@ -19,7 +19,7 @@ export default function ChatViewPage() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  if (!chat) return <div className="two-column-layout"><Sidebar /><div className="main-content">Chat not found</div></div>;
+  if (!chat) return <div className="two-column-layout"><div className="hide-on-mobile" style={{width: 360, borderRight: '1px solid var(--jamii-border)'}}><ChatListPage /></div><div className="main-content flex-center" style={{color:'var(--jamii-text-muted)'}}>Chat not found</div></div>;
 
   const handleSend = (e) => {
     e.preventDefault();
@@ -30,7 +30,7 @@ export default function ChatViewPage() {
 
   return (
     <div className="two-column-layout">
-      <div className="hide-on-mobile" style={{ height: '100%' }}><Sidebar /></div>
+      <div className="hide-on-mobile" style={{ height: '100%', width: 360, borderRight: '1px solid var(--jamii-border)', overflowY: 'auto', flexShrink: 0 }}><ChatListPage /></div>
       <div className="main-content">
         <div style={{ padding: '8px 16px', display: 'flex', alignItems: 'center', gap: 16, background: 'var(--jamii-surface)', borderBottom: '1px solid var(--jamii-border)', height: 60 }}>
           <button className="hide-on-desktop" onClick={() => navigate('/chats')} style={{ color: 'var(--jamii-blue)', fontSize: 24, marginRight: 8, display: window.innerWidth > 768 ? 'none' : 'block' }}>←</button>
