@@ -151,6 +151,7 @@ if (${ANDROID_ABI} STREQUAL "armeabi-v7a" OR ${ANDROID_ABI} STREQUAL "arm64-v8a"
     ANDROID_ARM_MODE arm
   )
 endif()
+target_compile_options(${TGCALLS_LIB} PRIVATE -Wno-non-pod-varargs)
 target_compile_definitions(${TGCALLS_LIB} PUBLIC ${WEBRTC_OPTIONS})
 target_compile_definitions(${TGCALLS_LIB} PRIVATE
   TDLIB_TDAPI_CLASS_PATH="org/drinkless/tdlib/TdApi"
@@ -194,15 +195,15 @@ target_link_libraries(${TGCALLS_LIB}
 )
 
 set(TGCALLS_EXCLUDE_LIBS
-  tgcalls/libtgvoip.a
-  tgcalls/libusrsctp.a
-  tgcalls/libsrtp.a
-  tgcalls/libopenh264.a
-  tgcalls/libabsl.a
-  tgcalls/libjson11.a
-  tgcalls/librnnoise.a
-  tgcalls/libwebrtc.a
-  tgcalls/libtgcalls.a
+  tgvoip/libtgvoip.a
+  tgvoip/libusrsctp.a
+  tgvoip/libsrtp.a
+  tgvoip/libopenh264.a
+  tgvoip/libabsl.a
+  tgvoip/libjson11.a
+  tgvoip/librnnoise.a
+  tgvoip/libwebrtc.a
+  tgvoip/libtgcalls.a
 )
 list(APPEND TGCALLS_EXCLUDE_LIBS
   libyuv.a
