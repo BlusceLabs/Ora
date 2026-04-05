@@ -1430,6 +1430,8 @@
   <item type="id" name="controller_jamii_creator" />
   <item type="id" name="controller_jamii_create" />
   <item type="id" name="controller_jamii_bookmarks" />
+  <item type="id" name="controller_jamii_search" />
+  <item type="id" name="controller_jamii_notifications" />
 
   <!-- JAMII HUB BUTTONS -->
 
@@ -1457,6 +1459,14 @@
   <item type="id" name="btn_jamii_trending3" />
   <item type="id" name="btn_jamii_trending4" />
   <item type="id" name="btn_jamii_trending5" />
+  <item type="id" name="btn_jamii_follow1" />
+  <item type="id" name="btn_jamii_follow2" />
+  <item type="id" name="btn_jamii_follow3" />
+  <item type="id" name="btn_jamii_notif1" />
+  <item type="id" name="btn_jamii_notif2" />
+  <item type="id" name="btn_jamii_notif3" />
+  <item type="id" name="btn_jamii_notif4" />
+  <item type="id" name="btn_jamii_notif5" />
 
   <!-- JAMII REELS BUTTONS -->
 

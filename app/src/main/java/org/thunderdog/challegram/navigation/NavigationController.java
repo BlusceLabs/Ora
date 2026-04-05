@@ -39,6 +39,7 @@ import org.thunderdog.challegram.theme.ColorState;
 import org.thunderdog.challegram.theme.ThemeChangeListener;
 import org.thunderdog.challegram.theme.ThemeListenerList;
 import org.thunderdog.challegram.theme.ThemeManager;
+import org.thunderdog.challegram.tool.Screen;
 import org.thunderdog.challegram.tool.UI;
 import org.thunderdog.challegram.tool.Views;
 import org.thunderdog.challegram.unsorted.Settings;
@@ -1660,6 +1661,7 @@ public class NavigationController implements Future<View>, ThemeChangeListener, 
 
   public void dispatchSystemInsets (View child, ViewGroup.MarginLayoutParams layoutParams, Rect legacyInsets, Rect systemInsets, Rect systemInsetWithoutIme) {
     Views.setMargins(layoutParams, legacyInsets.left, legacyInsets.top, legacyInsets.right, 0);
-    setBottomInset(systemInsets.bottom, systemInsetWithoutIme.bottom);
+    int jamiiNavHeight = Screen.dp(56);
+    setBottomInset(systemInsets.bottom + jamiiNavHeight, systemInsetWithoutIme.bottom + jamiiNavHeight);
   }
 }

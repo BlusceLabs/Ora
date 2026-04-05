@@ -180,6 +180,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnTo
   protected NavigationGestureController gestureController;
   protected @Nullable DrawerController drawer;
   protected OverlayView overlayView;
+  protected org.thunderdog.challegram.ui.JamiiBottomNavView jamiiBottomNav;
   protected Invalidator invalidator;
 
   private final ReferenceList<ActivityListener> activityListeners = new ReferenceList<>();
@@ -538,6 +539,14 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnTo
     if (drawer != null) {
       contentView.addView(drawer.getValue());
     }
+
+    jamiiBottomNav = new org.thunderdog.challegram.ui.JamiiBottomNavView(this);
+    android.widget.FrameLayout.LayoutParams navParams = new android.widget.FrameLayout.LayoutParams(
+      android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+      org.thunderdog.challegram.tool.Screen.dp(56),
+      Gravity.BOTTOM
+    );
+    contentView.addView(jamiiBottomNav, navParams);
 
     rootView.addView(contentView);
 

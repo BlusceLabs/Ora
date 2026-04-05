@@ -5890,6 +5890,19 @@
 
   <!-- Bookmarks -->
   <string name="JamiiBookmarks">Bookmarks</string>
+  <string name="JamiiExplore">Explore</string>
+  <string name="JamiiTrendingNow">Trending Now</string>
+  <string name="JamiiPeopleToFollow">People to Follow</string>
+  <string name="JamiiSuggestedUser1">@bluscelabs · BlusceLabs Official</string>
+  <string name="JamiiSuggestedUser2">@amara_w · Amara Wanjiru</string>
+  <string name="JamiiSuggestedUser3">@kevindev · Kevin Dev</string>
+  <string name="JamiiNotifications">Notifications</string>
+  <string name="JamiiNotifAll">All Activity</string>
+  <string name="JamiiNotifLike1">@bluscelabs liked your post</string>
+  <string name="JamiiNotifFollow1">@amara_w started following you</string>
+  <string name="JamiiNotifRepost1">@kevindev reposted your post</string>
+  <string name="JamiiNotifMention1">@djmaina mentioned you in a post</string>
+  <string name="JamiiNotifLike2">@ninapatel liked your reply</string>
   <string name="JamiiBookmarkCollections">COLLECTIONS</string>
   <string name="JamiiBookmarkNewCollection">New Collection</string>
   <string name="JamiiBookmarkAll">All Saved</string>
