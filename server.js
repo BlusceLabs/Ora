@@ -16,7 +16,9 @@ function getApkInfo() {
         const sizeMB = (stat.size / 1024 / 1024).toFixed(1);
         return { name: files[0], size: sizeMB, path: path.join(dir, files[0]) };
       }
-    } catch (e) {}
+    } catch (e) {
+      if (e.code !== 'ENOENT') console.error('[getApkInfo]', dir, e.message);
+    }
   }
   return null;
 }

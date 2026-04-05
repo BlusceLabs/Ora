@@ -79,8 +79,9 @@ echo "SDK ready at $ANDROID_SDK_ROOT"
 # ── 4. local.properties ───────────────────────────────────────────────────────
 echo ""
 echo "--- Step 4: local.properties ---"
-if [ ! -f local.properties ]; then
-  CPU_COUNT=$(nproc --all 2>/dev/null || echo 4)
+CPU_COUNT=$(nproc --all 2>/dev/null || echo 4)
+
+write_local_properties() {
   cat > local.properties << EOF
 sdk.dir=$ANDROID_SDK_ROOT
 org.gradle.workers.max=$CPU_COUNT
@@ -92,9 +93,25 @@ app.sources_url=${APP_SOURCES_URL:-https://github.com/BlusceLabs/Ora}
 telegram.api_id=${TELEGRAM_API_ID:-0}
 telegram.api_hash=${TELEGRAM_API_HASH:-00000000000000000000000000000000}
 EOF
+}
+
+REQUIRED_KEYS=(sdk.dir app.id app.name telegram.api_id telegram.api_hash)
+if [ ! -f local.properties ]; then
+  write_local_properties
   echo "local.properties created (telegram.api_id=${TELEGRAM_API_ID:-0})"
 else
-  echo "local.properties already exists — skipping"
+  # Validate that all required keys are present
+  MISSING=()
+  for key in "${REQUIRED_KEYS[@]}"; do
+    grep -q "^${key}=" local.properties || MISSING+=("$key")
+  done
+  if [ ${#MISSING[@]} -gt 0 ]; then
+    echo "local.properties missing required keys: ${MISSING[*]} — regenerating..."
+    write_local_properties
+    echo "local.properties regenerated"
+  else
+    echo "local.properties already exists and valid — skipping"
+  fi
 fi
 
 # ── 5. Native dependency setup ────────────────────────────────────────────────
@@ -105,7 +122,13 @@ export ANDROID_SDK_ROOT ANDROID_HOME
 if bash scripts/setup.sh --skip-sdk-setup 2>&1; then
   echo "setup.sh completed successfully"
 else
-  echo "WARNING: setup.sh returned non-zero. Native deps may already be built — continuing."
+  EXIT_CODE=$?
+  if [ "${SKIP_SETUP_ERRORS:-0}" = "1" ]; then
+    echo "WARNING: setup.sh failed (exit $EXIT_CODE). SKIP_SETUP_ERRORS=1 — continuing with pre-built deps."
+  else
+    echo "ERROR: setup.sh --skip-sdk-setup failed (exit $EXIT_CODE). Set SKIP_SETUP_ERRORS=1 to override." >&2
+    exit $EXIT_CODE
+  fi
 fi
 
 # ── 6. Gradle build ───────────────────────────────────────────────────────────
