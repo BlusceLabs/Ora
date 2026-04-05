@@ -2,20 +2,41 @@
 
 ## Project Overview
 
-**Ora** is a Telegram client for Android, built on top of the [Telegram X](https://github.com/TGX-Android/Telegram-X) open-source codebase and [TDLib](https://core.telegram.org/tdlib). It is developed by BlusceLabs and aims to deliver the same features as Telegram X under the Ora brand.
+**Ora** is a messaging app for Android and iOS by BlusceLabs. The Android app is built on the [TGX-Android/Telegram-X](https://github.com/TGX-Android/Telegram-X) open-source codebase using [TDLib](https://core.telegram.org/tdlib). The iOS app is a native SwiftUI application.
 
 - **GitHub:** https://github.com/BlusceLabs/Ora
 - **Package ID:** com.bluscelabs.ora
 
-## Tech Stack
+## Deliverables
+
+### Android APK (built ✅)
+- `app/build/outputs/apk/latestArm64/debug/Ora-0.28.6.1786-arm64-v8a-debug.apk` (69 MB) — real phones
+- `app/build/outputs/apk/lollipopX64/debug/Ora-0.28.6.1786-lollipop-x64-debug.apk` (48 MB) — emulators/x86
+
+### iOS App (source ready, compile on Mac ✅)
+- Source: `ios/` directory — full SwiftUI app
+- XcodeGen config: `ios/project.yml`
+- Build on Mac: `bash scripts/build-ora-ios.sh [simulator|device]`
+
+### Web App (next)
+
+## Android Tech Stack
 
 - **Languages:** Java, Kotlin, C/C++
 - **Build System:** Gradle 9.2.1 (Kotlin DSL) + CMake 3.22.1 + Ninja
 - **Android SDK:** Compile/Target SDK 36, Min SDK 21 (Android 5.0)
 - **NDK:** 23.2.8568313
 - **Java:** 21 (OpenJDK Temurin) — required; installed at `~/jdk21`
-- **Core Library:** TDLib (Telegram Database Library) via TGX-Android/tdlib wrapper
+- **Core Library:** TDLib via TGX-Android/tdlib wrapper
 - **Native Libraries:** TDLib, tgcalls/WebRTC, FFmpeg, libvpx, libopus, libwebp, libyuv, lz4, FLAC
+
+## iOS Tech Stack
+
+- **Language:** Swift 5.9
+- **UI Framework:** SwiftUI
+- **Min iOS:** 16.0
+- **Project Generator:** XcodeGen (`ios/project.yml`)
+- **Messaging backend:** TDLib (stub wired — add credentials to connect)
 
 ## Replit Environment
 

@@ -1,0 +1,39 @@
+name: Ora
+options:
+  bundleIdPrefix: com.bluscelabs
+  deploymentTarget:
+    iOS: "16.0"
+  xcodeVersion: "15"
+  createIntermediateGroups: true
+
+settings:
+  SWIFT_VERSION: "5.9"
+  MARKETING_VERSION: "0.28.6"
+  CURRENT_PROJECT_VERSION: "1"
+  PRODUCT_BUNDLE_IDENTIFIER: com.bluscelabs.ora
+  DEVELOPMENT_TEAM: ""  # Set your Apple Team ID here
+  CODE_SIGN_STYLE: Automatic
+  IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+
+targets:
+  Ora:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: Ora/App
+      - path: Ora/Views
+      - path: Ora/Models
+      - path: Ora/Services
+    resources:
+      - path: Ora/Resources/Assets.xcassets
+      - path: Ora/Resources/Info.plist
+        buildPhase: none
+    settings:
+      INFOPLIST_FILE: Ora/Resources/Info.plist
+      PRODUCT_BUNDLE_IDENTIFIER: com.bluscelabs.ora
+      ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+      ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+      SWIFT_VERSION: "5.9"
+      IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+      CODE_SIGN_STYLE: Automatic
