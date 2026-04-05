@@ -18,7 +18,12 @@
 - XcodeGen config: `ios/project.yml`
 - Build on Mac: `bash scripts/build-ora-ios.sh [simulator|device]`
 
-### Web App (next)
+### Web App (built ✅)
+- Source: `web/` directory — React + Vite SPA
+- Pages: Auth, Chat List, Chat View, Settings
+- Brand: dark theme (#17212b bg, #2AABEE blue)
+- Dev server: `cd web && pnpm run dev` (port 5000)
+- Workflow: "Start application" runs Vite dev server
 
 ## Android Tech Stack
 
@@ -40,16 +45,11 @@
 
 ## Replit Environment
 
-This is a native Android app and **cannot run as a web application**. A Node.js info server (`server.js`) provides project information in the Replit preview on port 5000.
+The Replit preview shows the **Ora web app** (React + Vite) on port 5000.
 
 ### Workflow
 
-- **Start application** — runs `node server.js` on port 5000 (webview)
-
-### Deployment
-
-- Target: autoscale
-- Run command: `node server.js`
+- **Start application** — runs `cd web && pnpm run dev` on port 5000 (webview)
 
 ## Build Status in Replit
 
