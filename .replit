@@ -37,12 +37,12 @@ waitForPort = 5000
 name = "Build APK"
 author = "agent"
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "export JAVA_HOME=~/jdk21 && export PATH=$JAVA_HOME/bin:$PATH && export ANDROID_SDK_ROOT=~/Android/Sdk && export ANDROID_HOME=~/Android/Sdk && bash scripts/build-ora.sh latestArm64Debug"
-
 [workflows.workflow.metadata]
 outputType = "console"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "export JAVA_HOME=~/jdk21 && export PATH=$JAVA_HOME/bin:$PATH && export ANDROID_SDK_ROOT=~/Android/Sdk && export ANDROID_HOME=~/Android/Sdk && export SKIP_SETUP_ERRORS=1 && bash scripts/build-jamii.sh latestArm64Debug"
 
 [[ports]]
 localPort = 5000

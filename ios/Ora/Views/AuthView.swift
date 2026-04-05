@@ -31,7 +31,7 @@ struct AuthView: View {
                             }
 
                             VStack(spacing: 8) {
-                                Text("Sign in to Ora")
+                                Text("Sign in to Jamii")
                                     .font(.system(size: 28, weight: .bold))
                                     .foregroundColor(.white)
                                 Text("Enter your phone number to continue")

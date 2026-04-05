@@ -207,8 +207,8 @@
     <item name="avatarInactive_big" />
     <item name="avatarRed" />
     <item name="avatarRed_big" />
-    <item name="avatarOrange" />
-    <item name="avatarOrange_big" />
+    <item name="avatarJamiinge" />
+    <item name="avatarJamiinge_big" />
     <item name="avatarYellow" />
     <item name="avatarYellow_big" />
     <item name="avatarGreen" />
@@ -225,7 +225,7 @@
 
     <item name="nameInactive" porterDuff="true" />
     <item name="nameRed" porterDuff="true" />
-    <item name="nameOrange" porterDuff="true" />
+    <item name="nameJamiinge" porterDuff="true" />
     <item name="nameYellow" porterDuff="true" />
     <item name="nameGreen" porterDuff="true" />
     <item name="nameCyan" porterDuff="true" />
@@ -235,7 +235,7 @@
 
     <item name="lineInactive" porterDuff="true" />
     <item name="lineRed" porterDuff="true" />
-    <item name="lineOrange" porterDuff="true" />
+    <item name="lineJamiinge" porterDuff="true" />
     <item name="lineYellow" porterDuff="true" />
     <item name="lineGreen" porterDuff="true" />
     <item name="lineCyan" porterDuff="true" />
@@ -383,7 +383,7 @@
     <item name="wp_cats" />
     <item name="wp_catsPink" />
     <item name="wp_catsGreen" />
-    <item name="wp_catsOrange" />
+    <item name="wp_catsJamiinge" />
     <item name="wp_catsBeige" />
     <item name="wp_circlesBlue" />
 
@@ -507,7 +507,7 @@
     <item name="themeClassic" />
     <item name="themeBlue" />
     <item name="themeRed" />
-    <item name="themeOrange" />
+    <item name="themeJamiinge" />
     <item name="themeGreen" />
     <item name="themePink" />
     <item name="themeCyan" />
@@ -551,7 +551,7 @@
     <item name="photoHighlightTint7" />
 
     <item name="ledBlue" />
-    <item name="ledOrange" />
+    <item name="ledJamiinge" />
     <item name="ledYellow" />
     <item name="ledGreen" />
     <item name="ledCyan" />

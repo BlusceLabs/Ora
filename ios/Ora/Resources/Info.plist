@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Ora</string>
+	<string>Jamii</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -23,13 +23,13 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Ora needs camera access to send photos and videos.</string>
+	<string>Jamii needs camera access to send photos and videos.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Ora needs microphone access for voice messages and calls.</string>
+	<string>Jamii needs microphone access for voice messages and calls.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Ora needs photo library access to share media.</string>
+	<string>Jamii needs photo library access to share media.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Ora needs contacts access to find people you know.</string>
+	<string>Jamii needs contacts access to find people you know.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

@@ -51,7 +51,7 @@ struct Message: Identifiable {
     static func sampleMessages(for chatId: Int64) -> [Message] {
         [
             Message(id: 1, chatId: chatId, text: "Hey! How's everything going?", date: Date().addingTimeInterval(-3600), isOutgoing: false, status: .read),
-            Message(id: 2, chatId: chatId, text: "Going great, thanks! Just finishing up the new Ora build.", date: Date().addingTimeInterval(-3500), isOutgoing: true, status: .read),
+            Message(id: 2, chatId: chatId, text: "Going great, thanks! Just finishing up the new Jamii build.", date: Date().addingTimeInterval(-3500), isOutgoing: true, status: .read),
             Message(id: 3, chatId: chatId, text: "Nice! When will it be ready?", date: Date().addingTimeInterval(-3400), isOutgoing: false, status: .read),
             Message(id: 4, chatId: chatId, text: "Should be done by tomorrow. The arm64 APK is already out 🚀", date: Date().addingTimeInterval(-3300), isOutgoing: true, status: .read),
             Message(id: 5, chatId: chatId, text: "Awesome work 🎉", date: Date().addingTimeInterval(-3200), isOutgoing: false, status: .read),

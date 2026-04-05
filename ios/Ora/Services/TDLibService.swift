@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-// TDLib service wrapper for Ora
+// TDLib service wrapper for Jamii
 // To enable real connectivity:
 //   1. Add TDLib.xcframework to the Xcode project (download from https://core.telegram.org/tdlib)
 //   2. Set your API_ID and API_HASH from https://core.telegram.org/api/obtaining_api_id

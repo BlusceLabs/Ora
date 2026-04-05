@@ -39,8 +39,8 @@ struct SettingsView: View {
                     .listRowBackground(Color("OraSurface").opacity(0.6))
 
                     Section("About") {
-                        SettingsRow(icon: "info.circle.fill", title: "Ora 0.28.6 (iOS)", color: .blue)
-                        SettingsRow(icon: "globe", title: "github.com/BlusceLabs/Ora", color: .green)
+                        SettingsRow(icon: "info.circle.fill", title: "Jamii 0.28.6 (iOS)", color: .blue)
+                        SettingsRow(icon: "globe", title: "github.com/BlusceLabs/Jamii", color: .green)
                     }
                     .listRowBackground(Color("OraSurface").opacity(0.6))
 

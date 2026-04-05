@@ -29,7 +29,7 @@ struct SplashView: View {
                 }
 
                 VStack(spacing: 6) {
-                    Text("Ora")
+                    Text("Jamii")
                         .font(.system(size: 40, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
 

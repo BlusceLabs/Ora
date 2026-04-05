@@ -1,5 +1,5 @@
 /*
- * This file is a part of Ora
+ * This file is a part of Jamii
  * Copyright © 2014 (tgx-android@pm.me)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -4949,9 +4949,9 @@ public class Tdlib implements TdlibProvider, Settings.SettingsChangeListener, Da
 
   public static final long ADMIN_CHAT_ID = ChatId.fromSupergroupId(1112283549); // TGX Alpha and Admins
   public static final long TRANSLATORS_CHAT_ID = ChatId.fromSupergroupId(1126790716);
-  public static final long TESTER_CHAT_ID = ChatId.fromSupergroupId(1336679475); // Ora Android: t.me/tgandroidtests
-  public static final long READER_CHAT_ID = ChatId.fromSupergroupId(1136101327); // Ora: t.me/tgx_android
-  public static final long CLOUD_RESOURCES_CHAT_ID = ChatId.fromSupergroupId(1247387696); // Ora: Resources
+  public static final long TESTER_CHAT_ID = ChatId.fromSupergroupId(1336679475); // Jamii Android: t.me/tgandroidtests
+  public static final long READER_CHAT_ID = ChatId.fromSupergroupId(1136101327); // Jamii: t.me/tgx_android
+  public static final long CLOUD_RESOURCES_CHAT_ID = ChatId.fromSupergroupId(1247387696); // Jamii: Resources
   public static final long TRENDING_STICKERS_CHAT_ID = ChatId.fromSupergroupId(1140222267); // Trending Stickers: t.me/TrendingStickers
 
   public boolean isRedTeam (long chatId) {

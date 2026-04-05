@@ -11,13 +11,13 @@ sdk.dir=
 keystore.file=
 
 ## Package name
-app.id=com.bluscelabs.ora
+app.id=com.bluscelabs.jamii
 
 ## Project name
-app.name=Ora
+app.name=Jamii
 
 ## Link to the app's website. If unavailable, link to the market page could be used.
-app.download_url=https://github.com/BlusceLabs/Ora
+app.download_url=https://github.com/BlusceLabs/Jamii
 
 ## Obtain credentials to access Telegram API:
 # https://core.telegram.org/api/obtaining_api_id
