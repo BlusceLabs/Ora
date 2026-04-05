@@ -5,7 +5,7 @@ const html = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Telegram X - Android App</title>
+  <title>Ora - Android App</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -140,13 +140,13 @@ const html = `<!DOCTYPE html>
     <div class="logo">
       <div class="logo-icon">✈️</div>
       <div>
-        <h1>Telegram X</h1>
+        <h1>Ora</h1>
         <div class="subtitle">Official Alternative Telegram Client for Android</div>
       </div>
     </div>
 
     <p class="description">
-      Telegram X is a slick, experimental Android client for Telegram based on TDLib.
+      Ora is a slick, experimental Android client for Telegram based on TDLib.
       This is a <strong>native Android application</strong> requiring Android SDK and NDK to build.
       It cannot be run directly as a web application.
     </p>
@@ -216,5 +216,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(5000, '0.0.0.0', () => {
-  console.log('Telegram X project info server running on port 5000');
+  console.log('Ora project info server running on port 5000');
 });
