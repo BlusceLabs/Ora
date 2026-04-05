@@ -185,26 +185,25 @@ const html = `<!DOCTYPE html>
     <div class="build-steps">
       <div class="step">
         <div class="step-num">1</div>
-        <div>Clone with submodules: <code>git clone --recursive --depth=1 https://github.com/TGX-Android/Telegram-X tgx</code></div>
+        <div>Edit <code>local.properties</code> and set real API credentials:
+        <code>telegram.api_id</code> and <code>telegram.api_hash</code>
+        (get them at core.telegram.org/api/obtaining_api_id)</div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <div>Obtain Telegram API credentials at <strong>core.telegram.org/api/obtaining_api_id</strong> and create <code>local.properties</code> with <code>sdk.dir</code>, <code>telegram.api_id</code>, and <code>telegram.api_hash</code></div>
+        <div>In the Shell, run: <code>bash scripts/build-ora.sh</code>
+        (takes ~30-60 min for first native C++ compilation)</div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
-        <div>Run <code>scripts/setup.sh</code> to download Android SDK packages and build native dependencies</div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div>Build with <code>./gradlew assembleUniversalRelease</code> or open in Android Studio</div>
+        <div>Find the APK at:
+        <code>app/build/outputs/apk/latest/universalDebug/</code></div>
       </div>
     </div>
 
     <div class="links">
-      <a href="https://play.google.com/store/apps/details?id=org.thunderdog.challegram" class="link-btn" target="_blank">Google Play</a>
-      <a href="https://github.com/BlusceLabs/Ora" class="link-btn secondary" target="_blank">GitHub</a>
-      <a href="https://t.me/tgx_log" class="link-btn secondary" target="_blank">Build Logs</a>
+      <a href="https://github.com/BlusceLabs/Ora" class="link-btn" target="_blank">GitHub</a>
+      <a href="https://core.telegram.org/api/obtaining_api_id" class="link-btn secondary" target="_blank">Get API Credentials</a>
     </div>
   </div>
 </body>
