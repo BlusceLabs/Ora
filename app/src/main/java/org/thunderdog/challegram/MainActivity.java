@@ -127,6 +127,8 @@ public class MainActivity extends BaseActivity implements GlobalAccountListener,
 
     Log.i("MainActivity.onCreate");
 
+    checkAndShowEarlyCrashLog();
+
     handler = new Handler();
 
     TdlibManager.instance().global().addAccountListener(this);
@@ -1513,5 +1515,31 @@ public class MainActivity extends BaseActivity implements GlobalAccountListener,
     Log.close();
 
     super.onDestroy();
+  }
+
+  private void checkAndShowEarlyCrashLog () {
+    try {
+      java.io.File crashFile = new java.io.File(getFilesDir(), "jamii_early_crash.txt");
+      if (!crashFile.exists()) return;
+      StringBuilder sb = new StringBuilder();
+      try (java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader(crashFile))) {
+        String line;
+        while ((line = br.readLine()) != null) sb.append(line).append('\n');
+      }
+      crashFile.delete();
+      final String crashText = sb.toString();
+      if (crashText.isEmpty()) return;
+      new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+        try {
+          new android.app.AlertDialog.Builder(this)
+            .setTitle("Crash Detected")
+            .setMessage(crashText.length() > 2000 ? crashText.substring(0, 2000) + "\n..." : crashText)
+            .setPositiveButton("OK", null)
+            .show();
+        } catch (Throwable ignored) {}
+      }, 1500);
+    } catch (Throwable t) {
+      android.util.Log.e("Jamii", "Failed to read crash log", t);
+    }
   }
 }

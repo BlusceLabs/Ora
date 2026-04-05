@@ -33,9 +33,25 @@ import tgx.extension.TelegramXExtension
 class BaseApplication : MultiDexApplication(), Configuration.Provider {
   companion object {
     lateinit var scope: CoroutineScope
+
+    fun installEarlyCrashHandler(context: android.content.Context) {
+      val defaultHandler = Thread.getDefaultUncaughtExceptionHandler()
+      Thread.setDefaultUncaughtExceptionHandler { thread, ex ->
+        try {
+          val file = java.io.File(context.filesDir, "jamii_early_crash.txt")
+          java.io.FileWriter(file).use { w ->
+            w.write("Crashed on thread: ${thread.name}\n")
+            w.write("Time: ${java.util.Date()}\n\n")
+            w.write(android.util.Log.getStackTraceString(ex))
+          }
+        } catch (_: Throwable) {}
+        defaultHandler?.uncaughtException(thread, ex)
+      }
+    }
   }
 
   override fun onCreate() {
+    installEarlyCrashHandler(applicationContext)
     super.onCreate()
     scope = MainScope()
 

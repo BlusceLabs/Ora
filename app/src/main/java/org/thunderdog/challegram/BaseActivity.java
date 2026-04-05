@@ -540,13 +540,17 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnTo
       contentView.addView(drawer.getValue());
     }
 
-    jamiiBottomNav = new org.thunderdog.challegram.ui.JamiiBottomNavView(this);
-    android.widget.FrameLayout.LayoutParams navParams = new android.widget.FrameLayout.LayoutParams(
-      android.view.ViewGroup.LayoutParams.MATCH_PARENT,
-      org.thunderdog.challegram.tool.Screen.dp(56),
-      Gravity.BOTTOM
-    );
-    contentView.addView(jamiiBottomNav, navParams);
+    try {
+      jamiiBottomNav = new org.thunderdog.challegram.ui.JamiiBottomNavView(this);
+      android.widget.FrameLayout.LayoutParams navParams = new android.widget.FrameLayout.LayoutParams(
+        android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+        org.thunderdog.challegram.tool.Screen.dp(56),
+        Gravity.BOTTOM
+      );
+      contentView.addView(jamiiBottomNav, navParams);
+    } catch (Throwable t) {
+      android.util.Log.e("Jamii", "Bottom nav creation failed", t);
+    }
 
     rootView.addView(contentView);
 
