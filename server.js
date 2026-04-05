@@ -141,7 +141,7 @@ const html = `<!DOCTYPE html>
       <div class="logo-icon">✈️</div>
       <div>
         <h1>Ora</h1>
-        <div class="subtitle">Official Alternative Telegram Client for Android</div>
+        <div class="subtitle">Telegram Client for Android by BlusceLabs</div>
       </div>
     </div>
 
@@ -177,7 +177,7 @@ const html = `<!DOCTYPE html>
       </div>
       <div class="info-item">
         <div class="info-label">Package ID</div>
-        <div class="info-value">org.thunderdog.challegram</div>
+        <div class="info-value">com.bluscelabs.ora</div>
       </div>
     </div>
 

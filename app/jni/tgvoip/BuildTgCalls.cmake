@@ -2,7 +2,7 @@
 
 set(TGCALLS_DIR "${TGCALLS_DEPS_DIR}/tgcalls")
 
-# Commit Telegram X currently relies on:
+# Commit Ora currently relies on:
 # https://github.com/TelegramMessenger/tgcalls/tree/c89f009c29e7142f1935383a978f2ad7c46da4d1
 
 # Source files list:
