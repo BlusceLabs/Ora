@@ -5669,4 +5669,234 @@
   <string name="RestrictedContent">Restricted Content</string>
   <string name="SensitiveContent">Sensitive Content</string>
 
+  <!-- ══════════════════════════════════════════════════════════
+       JAMII SUPER-APP — Feature Strings
+       ══════════════════════════════════════════════════════════ -->
+
+  <!-- Hub -->
+  <string name="JamiiHub">Jamii Features</string>
+  <string name="JamiiSocialFeatures">SOCIAL</string>
+  <string name="JamiiCreateAndShare">CREATE &amp; SHARE</string>
+  <string name="JamiiCreatorAndCommerce">CREATOR &amp; COMMERCE</string>
+
+  <!-- Feed -->
+  <string name="JamiiFeed">Feed</string>
+  <string name="JamiiFeedForYou">FOR YOU</string>
+  <string name="JamiiFeedFollowing">FOLLOWING</string>
+  <string name="JamiiFeedTrending">TRENDING TOPICS</string>
+  <string name="JamiiPostSampleText1">The future of social commerce in Africa is community-first. That\'s what we\'re building at BlusceLabs. 🌍 #Jamii</string>
+  <string name="JamiiPostSampleText2">Just shipped our MVP using React Native + Supabase in 3 days. The Jamii dev community helped so much! 🚀 #BuildInPublic</string>
+  <string name="JamiiPostSampleText3">Hot take: TypeScript has saved more African startups from midnight production bugs than any framework. Discuss 👇</string>
+  <string name="JamiiPostSampleText4">New Afrobeats mix is live — 2 hours of pure East African energy. Drop a 🔥 if you want the tracklist!</string>
+  <string name="JamiiPostSampleText5">Thread: 10 things I wish I knew before investing in African startups. A breakdown by sector, stage and risk profile. 🧵</string>
+  <string name="JamiiTrending1">#Jamii · 48.2K posts</string>
+  <string name="JamiiTrending2">#BuildInAfrica · 31.5K posts</string>
+  <string name="JamiiTrending3">#AfrobeatsVibes · 22.1K posts</string>
+  <string name="JamiiTrending4">#NairobiFoodies · 18.7K posts</string>
+  <string name="JamiiTrending5">#TechKE · 15.3K posts</string>
+
+  <!-- Reels -->
+  <string name="JamiiReels">Reels</string>
+  <string name="JamiiReelsTrending">TRENDING REELS</string>
+  <string name="JamiiReelsForYou">FOR YOU</string>
+  <string name="JamiiReel1Title">How to build a startup in 90 days</string>
+  <string name="JamiiReel1Meta">@bluscelabs · 2.1M views · 3:24</string>
+  <string name="JamiiReel2Title">Nairobi street food you MUST try</string>
+  <string name="JamiiReel2Meta">@nrbfoodies · 890K views · 1:47</string>
+  <string name="JamiiReel3Title">Afrobeats dance challenge 🔥</string>
+  <string name="JamiiReel3Meta">@djmaina · 4.5M views · 0:58</string>
+  <string name="JamiiReel4Title">Coding tips that blew my mind 💻</string>
+  <string name="JamiiReel4Meta">@kevindev · 1.2M views · 2:10</string>
+  <string name="JamiiReel5Title">Safari sunrise — Maasai Mara magic</string>
+  <string name="JamiiReel5Meta">@safarisnaps · 3.3M views · 1:05</string>
+  <string name="JamiiReel6Title">5 apps every Kenyan founder needs</string>
+  <string name="JamiiReel6Meta">@amara_w · 670K views · 4:12</string>
+  <string name="JamiiReel7Title">DIY home decor on a budget 🏡</string>
+  <string name="JamiiReel7Meta">@ninapatel · 450K views · 2:38</string>
+  <string name="JamiiCreateReel">Create a Reel</string>
+
+  <!-- Spaces -->
+  <string name="JamiiSpaces">Spaces</string>
+  <string name="JamiiSpacesLiveNow">LIVE NOW</string>
+  <string name="JamiiSpacesScheduled">SCHEDULED</string>
+  <string name="JamiiSpaceHost">Host a Space</string>
+  <string name="JamiiSpace1Title">Tech Talk with BlusceLabs</string>
+  <string name="JamiiSpace1Meta">@bluscelabs · 🎧 1,204 listening</string>
+  <string name="JamiiSpace2Title">African Music Vibes</string>
+  <string name="JamiiSpace2Meta">@djmaina · 🎧 876 listening</string>
+  <string name="JamiiSpace3Title">Fintech East Africa Q&amp;A</string>
+  <string name="JamiiSpace3Meta">@fintechea · 🎧 542 listening</string>
+  <string name="JamiiSpace4Title">Startup Founders Roundtable</string>
+  <string name="JamiiSpace4Meta">@kenyatechhub · 🎧 389 listening</string>
+  <string name="JamiiSpace5Title">Gaming Night — Valorant Talk</string>
+  <string name="JamiiSpace5Meta">@gamersguildke · Tomorrow 8PM</string>
+  <string name="JamiiSpace6Title">Women in Tech East Africa</string>
+  <string name="JamiiSpace6Meta">@amara_w · Friday 6PM</string>
+
+  <!-- Stories -->
+  <string name="JamiiStories">Stories</string>
+  <string name="JamiiStoriesRecent">RECENT STORIES</string>
+  <string name="JamiiStoriesSettings">STORY SETTINGS</string>
+  <string name="JamiiStoryAdd">Add Story</string>
+  <string name="JamiiStoryHighlights">Story Highlights</string>
+  <string name="JamiiStoryArchive">Story Archive</string>
+  <string name="JamiiStoryAudience">Story Audience</string>
+  <string name="JamiiCloseFriends">Close Friends</string>
+  <string name="JamiiStory1Title">My Story · @bluscelabs</string>
+  <string name="JamiiStory1Meta">12h remaining · 2.4K views</string>
+  <string name="JamiiStory2Title">Behind the scenes · @amara_w</string>
+  <string name="JamiiStory2Meta">8h remaining · 890 views</string>
+  <string name="JamiiStory3Title">Nairobi sunset · @ninapatel</string>
+  <string name="JamiiStory3Meta">3h remaining · 1.1K views</string>
+  <string name="JamiiStory4Title">Studio session · @djmaina</string>
+  <string name="JamiiStory4Meta">21h remaining · 3.2K views</string>
+
+  <!-- Live -->
+  <string name="JamiiLive">Live</string>
+  <string name="JamiiLiveNow">LIVE NOW</string>
+  <string name="JamiiLiveCategories">CATEGORIES</string>
+  <string name="JamiiGoLive">Go Live</string>
+  <string name="JamiiScheduleLive">Schedule a Live</string>
+  <string name="JamiiLiveStream1Title">BlusceLabs Product Launch 🚀</string>
+  <string name="JamiiLiveStream1Meta">@bluscelabs · 🔴 4,821 watching</string>
+  <string name="JamiiLiveStream2Title">Afrobeats Friday Mix</string>
+  <string name="JamiiLiveStream2Meta">@djmaina · 🔴 2,307 watching</string>
+  <string name="JamiiLiveStream3Title">Valorant Tournament Finals</string>
+  <string name="JamiiLiveStream3Meta">@gamersguildke · 🔴 8,940 watching</string>
+  <string name="JamiiLiveStream4Title">Live Shopping — Fashion Deals</string>
+  <string name="JamiiLiveStream4Meta">@jamii_shop · 🔴 1,205 watching</string>
+  <string name="JamiiLiveCatMusic">Music</string>
+  <string name="JamiiLiveCatGaming">Gaming</string>
+  <string name="JamiiLiveCatEducation">Education</string>
+  <string name="JamiiLiveCatShopping">Live Shopping</string>
+  <string name="JamiiLiveCatSports">Sports</string>
+
+  <!-- Communities -->
+  <string name="JamiiCommunities">Communities</string>
+  <string name="JamiiMyCommunities">MY COMMUNITIES</string>
+  <string name="JamiiSuggestedCommunities">DISCOVER</string>
+  <string name="JamiiCommunityCreate">Create a Community</string>
+  <string name="JamiiCommunityDiscover">Discover Communities</string>
+  <string name="JamiiCommunity1Name">Kenya Tech Hub</string>
+  <string name="JamiiCommunity1Meta">48.2K members · Tech</string>
+  <string name="JamiiCommunity2Name">Harambee Stars Fans</string>
+  <string name="JamiiCommunity2Meta">90.3K members · Sports</string>
+  <string name="JamiiCommunity3Name">Gamer\'s Guild KE</string>
+  <string name="JamiiCommunity3Meta">28.9K members · Gaming</string>
+  <string name="JamiiCommunity4Name">Nairobi Foodies</string>
+  <string name="JamiiCommunity4Meta">32.1K members · Food</string>
+  <string name="JamiiCommunity5Name">Beats &amp; Vibes KE</string>
+  <string name="JamiiCommunity5Meta">61K members · Music</string>
+  <string name="JamiiCommunity6Name">Fintech East Africa</string>
+  <string name="JamiiCommunity6Meta">35K members · Finance</string>
+  <string name="JamiiCommunity7Name">Wanderlust Africa</string>
+  <string name="JamiiCommunity7Meta">19.4K members · Travel</string>
+
+  <!-- Shop -->
+  <string name="JamiiShop">Shop</string>
+  <string name="JamiiShopCart">My Cart</string>
+  <string name="JamiiShopWishlist">Wishlist</string>
+  <string name="JamiiShopOrders">My Orders</string>
+  <string name="JamiiShopSell">Sell on Jamii</string>
+  <string name="JamiiShopCategories">CATEGORIES</string>
+  <string name="JamiiShopFeatured">FEATURED PRODUCTS</string>
+  <string name="JamiiShopCatElectronics">Electronics</string>
+  <string name="JamiiShopCatFashion">Fashion &amp; Clothing</string>
+  <string name="JamiiShopCatHome">Home &amp; Living</string>
+  <string name="JamiiShopCatSports">Sports &amp; Outdoors</string>
+  <string name="JamiiShopCatBooks">Books &amp; Media</string>
+  <string name="JamiiShopCatGrocery">Grocery &amp; Food</string>
+  <string name="JamiiProduct1Name">Premium Wireless Earbuds</string>
+  <string name="JamiiProduct1Price">KES 3,499</string>
+  <string name="JamiiProduct2Name">African Print Ankara Dress</string>
+  <string name="JamiiProduct2Price">KES 2,200</string>
+  <string name="JamiiProduct3Name">Maasai Leather Sandals</string>
+  <string name="JamiiProduct3Price">KES 1,850</string>
+  <string name="JamiiProduct4Name">Kenyan Coffee — 1kg Premium</string>
+  <string name="JamiiProduct4Price">KES 950</string>
+
+  <!-- Wallet -->
+  <string name="JamiiWallet">Wallet</string>
+  <string name="JamiiWalletBalance">BALANCE</string>
+  <string name="JamiiWalletCoins">Jamii Coins</string>
+  <string name="JamiiWalletCoinsValue">2,400 coins</string>
+  <string name="JamiiWalletDiamonds">Diamonds</string>
+  <string name="JamiiWalletDiamondsValue">180 diamonds</string>
+  <string name="JamiiWalletEarnings">Creator Earnings</string>
+  <string name="JamiiWalletEarningsValue">KES 12,500</string>
+  <string name="JamiiWalletBuyCoins">Buy Coins</string>
+  <string name="JamiiWalletSendGift">Send a Gift</string>
+  <string name="JamiiWalletWithdraw">Withdraw Earnings</string>
+  <string name="JamiiWalletTransactions">RECENT TRANSACTIONS</string>
+  <string name="JamiiTx1Desc">Coins purchased</string>
+  <string name="JamiiTx1Amount">+1,000 coins · 2h ago</string>
+  <string name="JamiiTx2Desc">Gift received from @kevindev</string>
+  <string name="JamiiTx2Amount">+50 diamonds · 1d ago</string>
+  <string name="JamiiTx3Desc">Earnings payout</string>
+  <string name="JamiiTx3Amount">KES 5,000 · 3d ago</string>
+  <string name="JamiiTx4Desc">Shop purchase</string>
+  <string name="JamiiTx4Amount">-KES 3,499 · 5d ago</string>
+  <string name="JamiiWalletSubscriptions">ACTIVE SUBSCRIPTIONS</string>
+  <string name="JamiiSub1Name">@bluscelabs Creator Tier</string>
+  <string name="JamiiSub1Price">KES 200/mo</string>
+  <string name="JamiiSub2Name">@djmaina Music Pass</string>
+  <string name="JamiiSub2Price">KES 150/mo</string>
+
+  <!-- Creator Studio -->
+  <string name="JamiiCreatorStudio">Creator Studio</string>
+  <string name="JamiiCreatorOverview">OVERVIEW (LAST 30 DAYS)</string>
+  <string name="JamiiCreatorContent">CONTENT</string>
+  <string name="JamiiCreatorMonetize">MONETIZATION</string>
+  <string name="JamiiCreatorTools">TOOLS &amp; INSIGHTS</string>
+  <string name="JamiiCreatorFollowers">Followers</string>
+  <string name="JamiiCreatorFollowersValue">24,800 (+1,240 this month)</string>
+  <string name="JamiiCreatorViews">Total Views</string>
+  <string name="JamiiCreatorViewsValue">1.2M (+340K this month)</string>
+  <string name="JamiiCreatorLikes">Likes</string>
+  <string name="JamiiCreatorLikesValue">89,400 (+12K this month)</string>
+  <string name="JamiiCreatorEarnings">Earnings</string>
+  <string name="JamiiCreatorEarningsValue">KES 12,500 this month</string>
+  <string name="JamiiCreatorMyPosts">My Posts</string>
+  <string name="JamiiCreatorMyReels">My Reels</string>
+  <string name="JamiiCreatorDrafts">Drafts</string>
+  <string name="JamiiCreatorScheduled">Scheduled Posts</string>
+  <string name="JamiiCreatorSubscriptions">Manage Subscriptions</string>
+  <string name="JamiiCreatorGifts">Gifts &amp; Virtual Items</string>
+  <string name="JamiiCreatorAffiliate">Affiliate Links</string>
+  <string name="JamiiCreatorTips">Tipping</string>
+  <string name="JamiiCreatorAnalytics">Audience Analytics</string>
+  <string name="JamiiCreatorAudience">Audience Demographics</string>
+  <string name="JamiiCreatorCollabs">Brand Collaborations</string>
+
+  <!-- Create Post -->
+  <string name="JamiiCreatePost">Create</string>
+  <string name="JamiiCreateChooseType">WHAT DO YOU WANT TO CREATE?</string>
+  <string name="JamiiCreateOptions">OPTIONS</string>
+  <string name="JamiiCreateTypeText">Text Post</string>
+  <string name="JamiiCreateTypePhoto">Photo Post</string>
+  <string name="JamiiCreateTypeVideo">Video Post</string>
+  <string name="JamiiCreateTypeReel">Reel (Short Video)</string>
+  <string name="JamiiCreateTypeStory">Story</string>
+  <string name="JamiiCreateTypePoll">Poll</string>
+  <string name="JamiiCreateTypeLive">Go Live</string>
+  <string name="JamiiCreateTypeSpace">Host a Space</string>
+  <string name="JamiiCreateAudience">Audience</string>
+  <string name="JamiiCreateAudiencePublic">Public</string>
+  <string name="JamiiCreateSchedule">Schedule</string>
+  <string name="JamiiCreateScheduleNow">Post now</string>
+  <string name="JamiiCreateLocation">Location</string>
+  <string name="JamiiCreateLocationNone">None</string>
+  <string name="JamiiCreateSaveDraft">Save as Draft</string>
+
+  <!-- Bookmarks -->
+  <string name="JamiiBookmarks">Bookmarks</string>
+  <string name="JamiiBookmarkCollections">COLLECTIONS</string>
+  <string name="JamiiBookmarkNewCollection">New Collection</string>
+  <string name="JamiiBookmarkAll">All Saved</string>
+  <string name="JamiiBookmarkVideos">Videos</string>
+  <string name="JamiiBookmarkPhotos">Photos</string>
+  <string name="JamiiBookmarkQuotes">Quotes</string>
+  <string name="JamiiBookmarkArticles">Articles</string>
+  <string name="JamiiBookmarkProducts">Products</string>
+
 </resources>

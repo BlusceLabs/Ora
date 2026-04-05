@@ -15,6 +15,23 @@
 - `app/build/outputs/apk/latestArm64/debug/Jamii-0.28.6.1786-arm64-v8a-debug.apk` (69 MB) — real phones
 - `app/build/outputs/apk/lollipopX64/debug/Jamii-0.28.6.1786-lollipop-x64-debug.apk` (48 MB) — emulators/x86
 
+**Android Phase 2 — Jamii Feature Controllers (added)**
+- `JamiiHubController` — entry hub screen with links to all Jamii features (accessible from Settings → Jamii Features)
+- `JamiiFeedController` — Social feed (For You / Following / Trending sections)
+- `JamiiReelsController` — Short-form video feed with trending reels
+- `JamiiStoriesController` — 24h ephemeral stories (add, highlights, archive, close friends)
+- `JamiiLiveController` — Live streaming discovery and go-live entry (categories: Music, Gaming, Education, Shopping, Sports)
+- `JamiiSpacesController` — Live audio rooms (live now + scheduled)
+- `JamiiCommunitiesController` — Topic-based communities (my communities + discover)
+- `JamiiShopController` — Shopping (categories, wishlist, cart, orders, sell)
+- `JamiiWalletController` — Wallet (Jamii Coins, Diamonds, earnings, transactions, subscriptions)
+- `JamiiCreatorController` — Creator Studio (analytics overview, content, monetization, tools)
+- `JamiiCreateController` — Full creation flow (text/photo/video/reel/story/poll/live/space)
+- `JamiiBookmarksController` — Bookmarks / saved content by collection
+- All new string resources added to `strings.xml` (Feed, Reels, Spaces, Live, Stories, Communities, Shop, Wallet, Creator, Create, Bookmarks)
+- All new IDs added to `ids.xml` (controller IDs + all button IDs)
+- Navigation: Settings → Jamii Features → all screens reachable
+
 ### iOS App (source ready, compile on Mac ✅)
 - Source: `ios/` directory — full SwiftUI app
 - XcodeGen config: `ios/project.yml`

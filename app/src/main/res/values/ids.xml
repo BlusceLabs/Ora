@@ -1415,4 +1415,154 @@
   <item type="id" name="btn_playback_speed_1_2" />
   <item type="id" name="btn_playback_speed_1_5" />
   <item type="id" name="btn_playback_speed_2_0" />
+
+  <!-- JAMII SUPER-APP CONTROLLERS -->
+
+  <item type="id" name="controller_jamii_hub" />
+  <item type="id" name="controller_jamii_feed" />
+  <item type="id" name="controller_jamii_reels" />
+  <item type="id" name="controller_jamii_stories" />
+  <item type="id" name="controller_jamii_live" />
+  <item type="id" name="controller_jamii_spaces" />
+  <item type="id" name="controller_jamii_communities" />
+  <item type="id" name="controller_jamii_shop" />
+  <item type="id" name="controller_jamii_wallet" />
+  <item type="id" name="controller_jamii_creator" />
+  <item type="id" name="controller_jamii_create" />
+  <item type="id" name="controller_jamii_bookmarks" />
+
+  <!-- JAMII HUB BUTTONS -->
+
+  <item type="id" name="btn_jamii_hub" />
+  <item type="id" name="btn_jamii_feed" />
+  <item type="id" name="btn_jamii_reels" />
+  <item type="id" name="btn_jamii_stories" />
+  <item type="id" name="btn_jamii_live" />
+  <item type="id" name="btn_jamii_spaces" />
+  <item type="id" name="btn_jamii_create" />
+  <item type="id" name="btn_jamii_communities" />
+  <item type="id" name="btn_jamii_bookmarks" />
+  <item type="id" name="btn_jamii_creator" />
+  <item type="id" name="btn_jamii_shop" />
+
+  <!-- JAMII FEED BUTTONS -->
+
+  <item type="id" name="btn_jamii_post1" />
+  <item type="id" name="btn_jamii_post2" />
+  <item type="id" name="btn_jamii_post3" />
+  <item type="id" name="btn_jamii_post4" />
+  <item type="id" name="btn_jamii_post5" />
+  <item type="id" name="btn_jamii_trending1" />
+  <item type="id" name="btn_jamii_trending2" />
+  <item type="id" name="btn_jamii_trending3" />
+  <item type="id" name="btn_jamii_trending4" />
+  <item type="id" name="btn_jamii_trending5" />
+
+  <!-- JAMII REELS BUTTONS -->
+
+  <item type="id" name="btn_jamii_reel1" />
+  <item type="id" name="btn_jamii_reel2" />
+  <item type="id" name="btn_jamii_reel3" />
+  <item type="id" name="btn_jamii_reel4" />
+  <item type="id" name="btn_jamii_reel5" />
+  <item type="id" name="btn_jamii_reel6" />
+  <item type="id" name="btn_jamii_reel7" />
+  <item type="id" name="btn_jamii_create_reel" />
+
+  <!-- JAMII SPACES BUTTONS -->
+
+  <item type="id" name="btn_jamii_space_host" />
+  <item type="id" name="btn_jamii_space1" />
+  <item type="id" name="btn_jamii_space2" />
+  <item type="id" name="btn_jamii_space3" />
+  <item type="id" name="btn_jamii_space4" />
+  <item type="id" name="btn_jamii_space5" />
+  <item type="id" name="btn_jamii_space6" />
+
+  <!-- JAMII STORIES BUTTONS -->
+
+  <item type="id" name="btn_jamii_story_add" />
+  <item type="id" name="btn_jamii_story_highlights" />
+  <item type="id" name="btn_jamii_story_archive" />
+  <item type="id" name="btn_jamii_story_audience" />
+  <item type="id" name="btn_jamii_story_close_friends" />
+  <item type="id" name="btn_jamii_story1" />
+  <item type="id" name="btn_jamii_story2" />
+  <item type="id" name="btn_jamii_story3" />
+  <item type="id" name="btn_jamii_story4" />
+
+  <!-- JAMII LIVE BUTTONS -->
+
+  <item type="id" name="btn_jamii_go_live" />
+  <item type="id" name="btn_jamii_live_schedule" />
+  <item type="id" name="btn_jamii_live1" />
+  <item type="id" name="btn_jamii_live2" />
+  <item type="id" name="btn_jamii_live3" />
+  <item type="id" name="btn_jamii_live4" />
+
+  <!-- JAMII COMMUNITIES BUTTONS -->
+
+  <item type="id" name="btn_jamii_community_create" />
+  <item type="id" name="btn_jamii_community_discover" />
+  <item type="id" name="btn_jamii_comm1" />
+  <item type="id" name="btn_jamii_comm2" />
+  <item type="id" name="btn_jamii_comm3" />
+  <item type="id" name="btn_jamii_comm4" />
+  <item type="id" name="btn_jamii_comm5" />
+  <item type="id" name="btn_jamii_comm6" />
+  <item type="id" name="btn_jamii_comm7" />
+
+  <!-- JAMII SHOP BUTTONS -->
+
+  <item type="id" name="btn_jamii_shop_cart" />
+  <item type="id" name="btn_jamii_shop_wishlist" />
+  <item type="id" name="btn_jamii_shop_orders" />
+  <item type="id" name="btn_jamii_shop_sell" />
+  <item type="id" name="btn_jamii_product1" />
+  <item type="id" name="btn_jamii_product2" />
+  <item type="id" name="btn_jamii_product3" />
+  <item type="id" name="btn_jamii_product4" />
+
+  <!-- JAMII WALLET BUTTONS -->
+
+  <item type="id" name="btn_jamii_wallet_buy" />
+  <item type="id" name="btn_jamii_wallet_send" />
+  <item type="id" name="btn_jamii_wallet_withdraw" />
+
+  <!-- JAMII CREATOR BUTTONS -->
+
+  <item type="id" name="btn_jamii_creator_posts" />
+  <item type="id" name="btn_jamii_creator_reels" />
+  <item type="id" name="btn_jamii_creator_drafts" />
+  <item type="id" name="btn_jamii_creator_scheduled" />
+  <item type="id" name="btn_jamii_creator_subscriptions" />
+  <item type="id" name="btn_jamii_creator_gifts" />
+  <item type="id" name="btn_jamii_creator_affiliate" />
+  <item type="id" name="btn_jamii_creator_tips" />
+  <item type="id" name="btn_jamii_creator_analytics" />
+  <item type="id" name="btn_jamii_creator_audience" />
+  <item type="id" name="btn_jamii_creator_collab" />
+
+  <!-- JAMII CREATE BUTTONS -->
+
+  <item type="id" name="btn_jamii_create_text" />
+  <item type="id" name="btn_jamii_create_photo" />
+  <item type="id" name="btn_jamii_create_video" />
+  <item type="id" name="btn_jamii_create_story" />
+  <item type="id" name="btn_jamii_create_poll" />
+  <item type="id" name="btn_jamii_create_audience" />
+  <item type="id" name="btn_jamii_create_schedule" />
+  <item type="id" name="btn_jamii_create_location" />
+  <item type="id" name="btn_jamii_create_draft" />
+
+  <!-- JAMII BOOKMARKS BUTTONS -->
+
+  <item type="id" name="btn_jamii_bookmark_new_collection" />
+  <item type="id" name="btn_jamii_bookmark_all" />
+  <item type="id" name="btn_jamii_bookmark_videos" />
+  <item type="id" name="btn_jamii_bookmark_photos" />
+  <item type="id" name="btn_jamii_bookmark_quotes" />
+  <item type="id" name="btn_jamii_bookmark_articles" />
+  <item type="id" name="btn_jamii_bookmark_products" />
+
 </resources>
