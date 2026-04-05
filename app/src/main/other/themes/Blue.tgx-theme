@@ -35,6 +35,7 @@ avatarPink, avatarPink_big, namePink, linePink: #D979A3
 avatarRed, avatarRed_big, nameRed, lineRed: #EF615C
 avatarViolet, avatarViolet_big, nameViolet, lineViolet: #9388E1
 avatarYellow, avatarYellow_big, nameYellow, lineYellow: #F5AD3D
+avatarJamiinge, avatarJamiinge_big, nameJamiinge, lineJamiinge, wp_catsJamiinge, themeJamiinge, ledJamiinge: #2AABEE
 background, iv_chatLinkBackground, iv_textReferenceBackground: #F2F2F2
 background_icon: #9DA1A5
 background_text: #71787E

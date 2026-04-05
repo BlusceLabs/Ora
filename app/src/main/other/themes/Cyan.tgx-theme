@@ -11,6 +11,7 @@ bubbleIn_progress, bubbleIn_textLink, bubbleOut_chatCorrectChosenFilling, bubble
 bubbleIn_textLinkPressHighlight, bubbleOut_textLinkPressHighlight, iv_textLinkPressHighlight, iv_textMarkedLinkPressHighlight, textLinkPressHighlight, tooltip_textLinkPressHighlight: #00BCD440
 bubbleOut_background, textSelectionHighlight, unread: #E0F7FA
 bubbleOut_file, controlActive, file, playerButtonActive, profileSectionActive, promo, textSearchQueryHighlight, tooltip_textLink, avatarArchive, avatarSavedMessages, avatarSavedMessages_big, avatarReplies, avatarReplies_big: #4DD0E1
+avatarJamiinge, avatarJamiinge_big, nameJamiinge, lineJamiinge, wp_catsJamiinge, themeJamiinge, ledJamiinge: #2AABEE
 bubbleOut_progress, bubbleOut_separator, bubbleOut_time: #81A4BE
 bubbleOut_waveformInactive, togglerActiveBackground, waveformInactive: #B2EBF2
 chatSendButton, online: #00ACC1

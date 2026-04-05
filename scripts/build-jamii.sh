@@ -128,18 +128,45 @@ fi
 
 # ── 5. Native dependency setup ────────────────────────────────────────────────
 echo ""
-echo "--- Step 5: Native dependencies (setup.sh --skip-sdk-setup) ---"
-# Export required vars for setup.sh / set-env.sh
+echo "--- Step 5: Native dependencies ---"
 export ANDROID_SDK_ROOT ANDROID_HOME
-if bash scripts/setup.sh --skip-sdk-setup 2>&1; then
-  echo "setup.sh completed successfully"
+
+# Check if all native libraries are already compiled — skip setup.sh if so
+VPX_ARM64="$WORKSPACE/app/jni/third_party/libvpx/build/latest/arm64-v8a/lib/libvpx.a"
+VPX_ARMV7="$WORKSPACE/app/jni/third_party/libvpx/build/latest/armv7-a/lib/libvpx.a"
+VPX_X86_64="$WORKSPACE/app/jni/third_party/libvpx/build/latest/x86_64/lib/libvpx.a"
+VPX_X86="$WORKSPACE/app/jni/third_party/libvpx/build/latest/i686/lib/libvpx.a"
+FFM_ARM64="$WORKSPACE/app/jni/third_party/ffmpeg/build/latest/arm64-v8a/lib/libavcodec.a"
+FFM_ARMV7="$WORKSPACE/app/jni/third_party/ffmpeg/build/latest/armv7-a/lib/libavcodec.a"
+FFM_X86_64="$WORKSPACE/app/jni/third_party/ffmpeg/build/latest/x86_64/lib/libavcodec.a"
+FFM_X86="$WORKSPACE/app/jni/third_party/ffmpeg/build/latest/i686/lib/libavcodec.a"
+
+NATIVE_LIBS_READY=true
+for f in "$VPX_ARM64" "$VPX_ARMV7" "$VPX_X86_64" "$VPX_X86" \
+          "$FFM_ARM64" "$FFM_ARMV7" "$FFM_X86_64" "$FFM_X86"; do
+  if [ ! -f "$f" ]; then
+    NATIVE_LIBS_READY=false
+    echo "  Missing: $f"
+    break
+  fi
+done
+
+if [ "$NATIVE_LIBS_READY" = "true" ]; then
+  echo "All native libraries already compiled — skipping setup.sh"
+  echo "  libvpx: all 4 ABIs ✓"
+  echo "  FFmpeg: all 4 ABIs ✓"
 else
-  EXIT_CODE=$?
-  if [ "${SKIP_SETUP_ERRORS:-0}" = "1" ]; then
-    echo "WARNING: setup.sh failed (exit $EXIT_CODE). SKIP_SETUP_ERRORS=1 — continuing with pre-built deps."
+  echo "Running setup.sh to compile native libraries..."
+  if bash scripts/setup.sh --skip-sdk-setup 2>&1; then
+    echo "setup.sh completed successfully"
   else
-    echo "ERROR: setup.sh --skip-sdk-setup failed (exit $EXIT_CODE). Set SKIP_SETUP_ERRORS=1 to override." >&2
-    exit $EXIT_CODE
+    EXIT_CODE=$?
+    if [ "${SKIP_SETUP_ERRORS:-0}" = "1" ]; then
+      echo "WARNING: setup.sh failed (exit $EXIT_CODE). SKIP_SETUP_ERRORS=1 — continuing with pre-built deps."
+    else
+      echo "ERROR: setup.sh --skip-sdk-setup failed (exit $EXIT_CODE). Set SKIP_SETUP_ERRORS=1 to override." >&2
+      exit $EXIT_CODE
+    fi
   fi
 fi
 

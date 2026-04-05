@@ -101,13 +101,21 @@ All standard submodules are initialized. BlusceLabs forks are cloned directly:
 | `vkryl/leveldb/jni/jni-utils` | TGX-Android/jni-utils |
 | `algorithm/x-algorithm` | BlusceLabs/x-algorithm (Grok-based For You feed, Rust) |
 
-### Blockers for Full Build
+### APK Build Status — WORKING ✅
 
-1. **Telegram API credentials**: `local.properties` has placeholder values (`telegram.api_id=0`). Get real credentials at https://core.telegram.org/api/obtaining_api_id and update `local.properties`.
+**Build time:** ~8 minutes (Gradle only, native libs cached)
+**Last successful build:** `Jamii-0.28.6.1786-arm64-v8a-debug.apk` (69 MB)
+**Variant built:** `latestArm64Debug`
 
-2. **Build time**: The full NDK compilation takes ~30-60 minutes. Run `bash scripts/build-jamii.sh` in a shell to trigger it.
+**Build fixes applied (all already in codebase):**
+- `scripts/build-jamii.sh` — Skip-if-cached logic for native libs: checks for `libvpx.a` + `libavcodec.a` across all 4 ABIs before running `setup.sh` (saves ~30-60 min per build)
+- `app/src/main/other/themes/Blue.tgx-theme` and 8 other themes — Added 7 missing Jamiinge brand color entries (`avatarJamiinge`, `nameJamiinge`, `lineJamiinge`, `wp_catsJamiinge`, `themeJamiinge`, `ledJamiinge`, `avatarJamiinge_big`) with value `#2AABEE`
+- `app/src/main/other/themes/colors-and-properties.xml` — Added 8 missing Orange color schema entries (`avatarOrange`, `avatarOrange_big`, `nameOrange`, `lineOrange`, `themeOrange`, `ledOrange`, `wp_catsOrange`)
+- `app/src/main/res/values/strings.xml` — Added 3 missing Orange strings: `ThemeOrange`, `LedOrange`, `AccentColorOrange`
 
-3. **webrtc_deps**: `app/jni/tgvoip/third_party/webrtc_deps/base` and `webrtc_deps/third_party` are uninitialized (Chromium submodules, ~10GB each). The build may or may not require them depending on which code paths BlusceLabs/webrtc and BlusceLabs/tgcalls use.
+**Remaining known issues:**
+- `Telegram API credentials`: `local.properties` has placeholder values (`telegram.api_id=0`). Need real credentials from https://core.telegram.org/api/obtaining_api_id for a production build.
+- `webrtc_deps`: Chromium submodules uninitialized (~10GB). Build currently works without them for `latestArm64Debug`.
 
 ## Building the APK in Replit
 

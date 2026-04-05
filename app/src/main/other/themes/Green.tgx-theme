@@ -17,6 +17,7 @@ bubbleOut_progress, bubbleOut_separator, bubbleOut_time: #6CC264
 bubbleOut_waveformInactive, textSelectionHighlight, waveformInactive: #C8E6C9
 messageSelection: #66BB6A10
 promo, textSearchQueryHighlight, tooltip_textLink, avatarArchive, avatarSavedMessages, avatarSavedMessages_big, avatarReplies, avatarReplies_big: #81C784
+avatarJamiinge, avatarJamiinge_big, nameJamiinge, lineJamiinge, wp_catsJamiinge, themeJamiinge, ledJamiinge: #2AABEE
 seekReady: #D9EEDA
 togglerActiveBackground: #A5D6A7
 unread: #E8F5E9

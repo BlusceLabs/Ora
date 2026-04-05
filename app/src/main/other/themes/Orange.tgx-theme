@@ -11,6 +11,7 @@ bubbleIn_progress, bubbleOut_inlineOutline, bubbleOut_waveformActive, checkActiv
 bubbleIn_textLinkPressHighlight, bubbleOut_textLinkPressHighlight, iv_textLinkPressHighlight, iv_textMarkedLinkPressHighlight, textLinkPressHighlight, tooltip_textLinkPressHighlight: #F4511E40
 bubbleOut_background: #FBE2E0
 bubbleOut_chatCorrectFilling, bubbleOut_chatCorrectChosenFilling, bubbleOut_chatVerticalLine, chatListVerify, controlActive, messageSwipeBackground, messageVerticalLine, promo, seekDone, sliderActive, textSearchQueryHighlight, tooltip_textLink, avatarArchive, avatarSavedMessages, avatarSavedMessages_big, avatarReplies, avatarReplies_big: #FF7043
+avatarJamiinge, avatarJamiinge_big, nameJamiinge, lineJamiinge, wp_catsJamiinge, themeJamiinge, ledJamiinge: #2AABEE
 bubbleOut_inlineIcon, bubbleOut_inlineText, inlineIcon, inlineText, profileSectionActive: #E64A19
 bubbleOut_progress, bubbleOut_separator, bubbleOut_time: #BF9081
 bubbleOut_waveformInactive, textSelectionHighlight, waveformInactive: #FFCCBC

@@ -1867,6 +1867,7 @@
   <string name="ThemeCyan">Cyan</string>
   <string name="ThemePink">Pink</string>
   <string name="ThemeJamiinge">Jamiinge</string>
+  <string name="ThemeOrange">Orange</string>
   <string name="ThemeWhiteBlack">White-black</string>
   <string name="ThemeGreen">Green</string>
   <string name="VideoMessages">Video messages</string>
@@ -2569,6 +2570,7 @@
   <string name="LedDefault">Default</string>
   <string name="LedBlue">Blue</string>
   <string name="LedJamiinge">Jamiinge</string>
+  <string name="LedOrange">Orange</string>
   <string name="LedYellow">Yellow</string>
   <string name="LedGreen">Green</string>
   <string name="LedCyan">Cyan</string>
@@ -3133,6 +3135,7 @@
 
   <string name="AccentColorRed">Red</string>
   <string name="AccentColorJamiinge">Jamiinge</string>
+  <string name="AccentColorOrange">Orange</string>
   <string name="AccentColorPink">Pink</string>
   <string name="AccentColorGreen">Green</string>
   <string name="AccentColorPurple">Purple</string>
