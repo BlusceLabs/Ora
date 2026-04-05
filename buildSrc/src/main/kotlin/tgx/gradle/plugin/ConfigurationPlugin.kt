@@ -83,7 +83,13 @@ open class ConfigurationPlugin : Plugin<Project> {
     val legacyNdkVersion = versions.getOrThrow("version.ndk_legacy")
     val primaryNdkVersion = versions.getOrThrow("version.ndk_primary")
 
-    if (properties.getProperty("telegram.api_id", "").isEmpty() || properties.getProperty("telegram.api_hash").isEmpty()) {
+    val envApiId = System.getenv("TELEGRAM_API_ID") ?: ""
+    val envApiHash = System.getenv("TELEGRAM_API_HASH") ?: ""
+
+    val rawApiId = envApiId.ifEmpty { properties.getProperty("telegram.api_id", "") }
+    val rawApiHash = envApiHash.ifEmpty { properties.getProperty("telegram.api_hash", "") }
+
+    if (rawApiId.isEmpty() || rawApiId == "0" || rawApiHash.isEmpty() || rawApiHash.all { it == '0' }) {
       fatal("""
         Telegram API credentials missing.
         
@@ -91,6 +97,7 @@ open class ConfigurationPlugin : Plugin<Project> {
         telegram.api_id=YOUR_API_ID_HERE
         telegram.api_hash=YOUR_API_HASH_HERE
         
+        Or set environment variables TELEGRAM_API_ID and TELEGRAM_API_HASH.
         Obtain them at https://core.telegram.org/api/obtaining_api_id
       """.trimIndent())
     }
@@ -99,8 +106,8 @@ open class ConfigurationPlugin : Plugin<Project> {
     val leveldbVersion = versions.getProperty("version.leveldb")
     val emojiVersion = versions.getIntOrThrow("version.emoji")
 
-    val telegramApiId = properties.getIntOrThrow("telegram.api_id")
-    val telegramApiHash = properties.getOrThrow("telegram.api_hash")
+    val telegramApiId = rawApiId.toInt()
+    val telegramApiHash = rawApiHash
 
     val creationDateMillis = versions.getOrThrow("version.creation").toLong()
 
