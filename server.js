@@ -50,7 +50,7 @@ function getLog() {
 }
 
 function getApkStatus() {
-  const apkDir = '/home/runner/workspace/app/build/outputs/apk/lollipop/x64/debug';
+  const apkDir = '/home/runner/workspace/app/build/outputs/apk/lollipopX64/debug';
   try {
     const files = fs.readdirSync(apkDir).filter(f => f.endsWith('.apk'));
     if (files.length > 0) {
@@ -134,7 +134,7 @@ const server = http.createServer((req, res) => {
       <div class="logo-icon">✈️</div>
       <div>
         <h1>Ora</h1>
-        <div class="subtitle">Telegram Client for Android by BlusceLabs · Build Monitor</div>
+        <div class="subtitle">Android App by BlusceLabs · Build Monitor</div>
       </div>
     </div>
 
