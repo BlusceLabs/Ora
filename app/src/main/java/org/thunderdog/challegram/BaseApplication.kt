@@ -34,15 +34,30 @@ class BaseApplication : MultiDexApplication(), Configuration.Provider {
   companion object {
     lateinit var scope: CoroutineScope
 
+    @Volatile private var markerFile: java.io.File? = null
+
+    fun writeStep(step: String) {
+      try {
+        val f = markerFile ?: return
+        val fos = java.io.FileOutputStream(f, false)
+        fos.write("LAST_STEP: $step\nTime: ${java.util.Date()}\n".toByteArray())
+        fos.fd.sync()
+        fos.close()
+      } catch (_: Throwable) {}
+    }
+
     fun installEarlyCrashHandler(context: android.content.Context) {
+      markerFile = java.io.File(context.filesDir, "jamii_step.txt")
+      val crashFile = java.io.File(context.filesDir, "jamii_early_crash.txt")
       val defaultHandler = Thread.getDefaultUncaughtExceptionHandler()
       Thread.setDefaultUncaughtExceptionHandler { thread, ex ->
         try {
-          val file = java.io.File(context.filesDir, "jamii_early_crash.txt")
-          java.io.FileWriter(file).use { w ->
-            w.write("Crashed on thread: ${thread.name}\n")
-            w.write("Time: ${java.util.Date()}\n\n")
-            w.write(android.util.Log.getStackTraceString(ex))
+          java.io.FileOutputStream(crashFile, false).use { fos ->
+            val msg = "Crashed on thread: ${thread.name}\n" +
+              "Time: ${java.util.Date()}\n\n" +
+              android.util.Log.getStackTraceString(ex)
+            fos.write(msg.toByteArray())
+            fos.fd.sync()
           }
         } catch (_: Throwable) {}
         defaultHandler?.uncaughtException(thread, ex)
@@ -50,11 +65,25 @@ class BaseApplication : MultiDexApplication(), Configuration.Provider {
     }
   }
 
-  override fun onCreate() {
-    installEarlyCrashHandler(applicationContext)
-    super.onCreate()
-    scope = MainScope()
+  override fun attachBaseContext(base: android.content.Context?) {
+    super.attachBaseContext(base)
+    try {
+      val dir = base?.filesDir ?: return
+      markerFile = java.io.File(dir, "jamii_step.txt")
+      writeStep("attachBaseContext-done")
+    } catch (_: Throwable) {}
+  }
 
+  override fun onCreate() {
+    writeStep("onCreate-start")
+    installEarlyCrashHandler(applicationContext)
+    writeStep("crash-handler-installed")
+    super.onCreate()
+    writeStep("super-onCreate-done")
+    scope = MainScope()
+    writeStep("scope-created")
+
+    writeStep("before-PushManagerBridge-initialize")
     PushManagerBridge.initialize(
       scope,
 
@@ -72,16 +101,23 @@ class BaseApplication : MultiDexApplication(), Configuration.Provider {
         }
       }
     )
+    writeStep("PushManagerBridge-done")
 
+    writeStep("before-UI-initApp")
     UI.initApp(applicationContext)
+    writeStep("UI-initApp-done")
 
     if (!BuildConfig.EXPERIMENTAL) {
+      writeStep("before-TelegramXExtension-configure")
       val deviceTokenRetriever = TdlibNotificationUtils.getDeviceTokenRetriever()
       TelegramXExtension.configure(this, deviceTokenRetriever)
+      writeStep("TelegramXExtension-configured")
       if (deviceTokenRetriever !is FirebaseDeviceTokenRetriever) {
         FirebaseMessaging.getInstance().isAutoInitEnabled = false
       }
     }
+
+    writeStep("onCreate-complete")
   }
 
   override val workManagerConfiguration: Configuration

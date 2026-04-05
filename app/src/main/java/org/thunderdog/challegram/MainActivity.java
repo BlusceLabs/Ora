@@ -1520,20 +1520,45 @@ public class MainActivity extends BaseActivity implements GlobalAccountListener,
   private void checkAndShowEarlyCrashLog () {
     try {
       java.io.File crashFile = new java.io.File(getFilesDir(), "jamii_early_crash.txt");
-      if (!crashFile.exists()) return;
-      StringBuilder sb = new StringBuilder();
-      try (java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader(crashFile))) {
-        String line;
-        while ((line = br.readLine()) != null) sb.append(line).append('\n');
+      java.io.File stepFile  = new java.io.File(getFilesDir(), "jamii_step.txt");
+
+      String crashText = "";
+      String stepText  = "";
+
+      if (crashFile.exists()) {
+        StringBuilder sb = new StringBuilder();
+        try (java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader(crashFile))) {
+          String line;
+          while ((line = br.readLine()) != null) sb.append(line).append('\n');
+        }
+        crashFile.delete();
+        crashText = sb.toString();
       }
-      crashFile.delete();
-      final String crashText = sb.toString();
-      if (crashText.isEmpty()) return;
+
+      if (stepFile.exists()) {
+        StringBuilder sb = new StringBuilder();
+        try (java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader(stepFile))) {
+          String line;
+          while ((line = br.readLine()) != null) sb.append(line).append('\n');
+        }
+        stepFile.delete();
+        stepText = sb.toString();
+      }
+
+      if (crashText.isEmpty() && stepText.isEmpty()) return;
+
+      final String report =
+        (stepText.isEmpty() ? "" : "=== LAST STEP ===\n" + stepText + "\n") +
+        (crashText.isEmpty() ? "(Native crash — no Java stack trace captured)\n" :
+          "=== CRASH ===\n" + crashText);
+
+      final String displayText = report.length() > 3000 ? report.substring(0, 3000) + "\n[truncated]" : report;
+
       new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
         try {
           new android.app.AlertDialog.Builder(this)
             .setTitle("Crash Detected")
-            .setMessage(crashText.length() > 2000 ? crashText.substring(0, 2000) + "\n..." : crashText)
+            .setMessage(displayText)
             .setPositiveButton("OK", null)
             .show();
         } catch (Throwable ignored) {}
