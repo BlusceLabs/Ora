@@ -36,7 +36,7 @@ export const mockStories = [
     color: '#2AABEE',
     seen: false,
     items: [
-      { id: 1, bg: 'linear-gradient(135deg,#0f2027,#203a43,#2c5364)', text: 'Ora is coming 🚀\nThe super-app you\'ve been waiting for.', time: '5h' },
+      { id: 1, bg: 'linear-gradient(135deg,#0f2027,#203a43,#2c5364)', text: 'Jamii is coming 🚀\nThe super-app you\'ve been waiting for.', time: '5h' },
       { id: 2, bg: 'linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)', text: 'Built for everyone.\nMessaging · Feed · Stories · Spaces', time: '4h' },
     ],
   },

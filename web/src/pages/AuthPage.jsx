@@ -18,11 +18,11 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="flex-center" style={{ width: '100%', height: '100%', background: 'var(--ora-bg)' }}>
+    <div className="flex-center" style={{ width: '100%', height: '100%', background: 'var(--jamii-bg)' }}>
       <div style={{ width: '100%', maxWidth: 400, padding: 32, textAlign: 'center' }}>
         <div style={{ fontSize: 64, marginBottom: 16 }}>✈️</div>
-        <h1 style={{ fontSize: 32, fontWeight: 'bold', marginBottom: 8 }}>Ora by BlusceLabs</h1>
-        <p style={{ color: 'var(--ora-text-muted)', marginBottom: 32 }}>
+        <h1 style={{ fontSize: 32, fontWeight: 'bold', marginBottom: 8 }}>Jamii by BlusceLabs</h1>
+        <p style={{ color: 'var(--jamii-text-muted)', marginBottom: 32 }}>
           {step === 1 ? 'Please confirm your country code and enter your phone number.' : 'Enter the code we just sent you.'}
         </p>
 

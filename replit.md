@@ -1,24 +1,24 @@
-# Ora — Replit Setup
+# Jamii — Replit Setup
 
 ## Project Overview
 
-**Ora** is a super-app by BlusceLabs — combining messaging, social feed, stories, reels, creator tools, and commerce into one platform. The Android app is built on the [TGX-Android/Telegram-X](https://github.com/TGX-Android/Telegram-X) open-source codebase using [TDLib](https://core.telegram.org/tdlib). The iOS app is a native SwiftUI application. The algorithmic feed is powered by the BlusceLabs x-algorithm (Grok-based transformer recommendation system).
+**Jamii** is a super-app by BlusceLabs — combining messaging, social feed, stories, reels, creator tools, and commerce into one platform. The Android app is built on the [TGX-Android/Telegram-X](https://github.com/TGX-Android/Telegram-X) open-source codebase using [TDLib](https://core.telegram.org/tdlib). The iOS app is a native SwiftUI application. The algorithmic feed is powered by the BlusceLabs x-algorithm (Grok-based transformer recommendation system).
 
 **Super-app pillars:** Messages · Feed · Stories · Spaces · Creator · Commerce · Platform
 
-- **GitHub:** https://github.com/BlusceLabs/Ora
-- **Package ID:** com.bluscelabs.ora
+- **GitHub:** https://github.com/BlusceLabs/Jamii
+- **Package ID:** com.bluscelabs.jamii
 
 ## Deliverables
 
 ### Android APK (built ✅)
-- `app/build/outputs/apk/latestArm64/debug/Ora-0.28.6.1786-arm64-v8a-debug.apk` (69 MB) — real phones
-- `app/build/outputs/apk/lollipopX64/debug/Ora-0.28.6.1786-lollipop-x64-debug.apk` (48 MB) — emulators/x86
+- `app/build/outputs/apk/latestArm64/debug/Jamii-0.28.6.1786-arm64-v8a-debug.apk` (69 MB) — real phones
+- `app/build/outputs/apk/lollipopX64/debug/Jamii-0.28.6.1786-lollipop-x64-debug.apk` (48 MB) — emulators/x86
 
 ### iOS App (source ready, compile on Mac ✅)
 - Source: `ios/` directory — full SwiftUI app
 - XcodeGen config: `ios/project.yml`
-- Build on Mac: `bash scripts/build-ora-ios.sh [simulator|device]`
+- Build on Mac: `bash scripts/build-jamii-ios.sh [simulator|device]`
 
 ### Web App (built ✅)
 - Source: `web/` directory — React + Vite SPA
@@ -47,7 +47,7 @@
 
 ## Replit Environment
 
-The Replit preview shows the **Ora web app** (React + Vite) on port 5000.
+The Replit preview shows the **Jamii web app** (React + Vite) on port 5000.
 
 ### Workflow
 
@@ -86,7 +86,7 @@ All standard submodules are initialized. BlusceLabs forks are cloned directly:
 
 1. **Telegram API credentials**: `local.properties` has placeholder values (`telegram.api_id=0`). Get real credentials at https://core.telegram.org/api/obtaining_api_id and update `local.properties`.
 
-2. **Build time**: The full NDK compilation takes ~30-60 minutes. Run `bash scripts/build-ora.sh` in a shell to trigger it.
+2. **Build time**: The full NDK compilation takes ~30-60 minutes. Run `bash scripts/build-jamii.sh` in a shell to trigger it.
 
 3. **webrtc_deps**: `app/jni/tgvoip/third_party/webrtc_deps/base` and `webrtc_deps/third_party` are uninitialized (Chromium submodules, ~10GB each). The build may or may not require them depending on which code paths BlusceLabs/webrtc and BlusceLabs/tgcalls use.
 
@@ -105,7 +105,7 @@ export ANDROID_HOME=~/Android/Sdk
 Or use the convenience script:
 
 ```bash
-bash scripts/build-ora.sh
+bash scripts/build-jamii.sh
 ```
 
 The APK will appear at:
@@ -115,7 +115,7 @@ app/build/outputs/apk/latest/universalDebug/app-latest-universal-debug.apk
 
 ## Building Locally (Outside Replit)
 
-1. Clone with submodules: `git clone --recursive --depth=1 https://github.com/BlusceLabs/Ora ora`
+1. Clone with submodules: `git clone --recursive --depth=1 https://github.com/BlusceLabs/Jamii jamii`
 2. Install Android Studio with SDK API 36, NDK 23.2.8568313, CMake 3.22.1
 3. Obtain Telegram API credentials at https://core.telegram.org/api/obtaining_api_id
 4. Copy `local.properties.sample` to `local.properties`, set `sdk.dir`, `telegram.api_id`, and `telegram.api_hash`
@@ -123,14 +123,14 @@ app/build/outputs/apk/latest/universalDebug/app-latest-universal-debug.apk
 
 ## Branding Changes from Telegram X
 
-All user-facing and code-level references to "Telegram X" have been replaced with "Ora":
+All user-facing and code-level references to "Telegram X" have been replaced with "Jamii":
 
 - `app/src/main/res/values/strings.xml` — all user-facing strings
 - `app/src/main/res/values/local_strings.xml`
 - All Java/Kotlin source files under `app/src/`
 - All native C/C++ JNI files under `app/jni/`
 - `app/src/main/AndroidManifest.xml`
-- `local.properties.sample` — updated with `com.bluscelabs.ora` package ID and `Ora` app name
+- `local.properties.sample` — updated with `com.bluscelabs.jamii` package ID and `Jamii` app name
 - `buildSrc/build.gradle.kts` — JVM toolchain set to Java 21
 
 ## Project Structure
@@ -147,13 +147,13 @@ buildSrc/               # Custom Gradle plugins (tgx-config, tgx-module)
 tdlib/                  # TGX-Android/tdlib: Gradle wrapper with pre-built TDLib .so files
 vkryl/                  # Utility libraries (android, core, leveldb, td)
 extension/              # Extension module bridge
-algorithm/              # Ora recommendation engine
+algorithm/              # Jamii recommendation engine
   x-algorithm/          # BlusceLabs/x-algorithm — For You feed (Grok transformer, Rust)
     candidate-pipeline/ # Retrieval & filtering stage
     home-mixerphoenix/  # Ranking & mixing (Phoenix model)
     thunder/            # In-network post fetching
 scripts/                # Build helper scripts
-  build-ora.sh          # Convenience build script
+  build-jamii.sh          # Convenience build script
   setup.sh              # Original TGX setup script
 gradle/                 # Gradle version catalogs (libs.versions.toml)
 server.js               # Node.js info server for Replit webview (port 5000)
