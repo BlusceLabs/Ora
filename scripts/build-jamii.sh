@@ -117,10 +117,16 @@ else
   for key in "${REQUIRED_KEYS[@]}"; do
     grep -q "^${key}=" local.properties || MISSING+=("$key")
   done
+  # Also force-regenerate if api_id is placeholder 0 but real credentials are available
+  CURRENT_API_ID=$(grep "^telegram.api_id=" local.properties | cut -d'=' -f2)
   if [ ${#MISSING[@]} -gt 0 ]; then
     echo "local.properties missing required keys: ${MISSING[*]} — regenerating..."
     write_local_properties
-    echo "local.properties regenerated"
+    echo "local.properties regenerated (telegram.api_id=${TELEGRAM_API_ID:-0})"
+  elif [ "$CURRENT_API_ID" = "0" ] && [ -n "${TELEGRAM_API_ID:-}" ] && [ "${TELEGRAM_API_ID}" != "0" ]; then
+    echo "local.properties has placeholder api_id=0 but real credentials available — updating..."
+    write_local_properties
+    echo "local.properties updated with real credentials (telegram.api_id=${TELEGRAM_API_ID})"
   else
     echo "local.properties already exists and valid — skipping"
   fi
