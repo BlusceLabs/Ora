@@ -203,7 +203,7 @@ const html = `<!DOCTYPE html>
 
     <div class="links">
       <a href="https://play.google.com/store/apps/details?id=org.thunderdog.challegram" class="link-btn" target="_blank">Google Play</a>
-      <a href="https://github.com/TGX-Android/Telegram-X" class="link-btn secondary" target="_blank">GitHub</a>
+      <a href="https://github.com/BlusceLabs/Ora" class="link-btn secondary" target="_blank">GitHub</a>
       <a href="https://t.me/tgx_log" class="link-btn secondary" target="_blank">Build Logs</a>
     </div>
   </div>

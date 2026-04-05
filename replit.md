@@ -5,7 +5,7 @@
 **Telegram X** is an official alternative Android client for Telegram, based on [TDLib](https://core.telegram.org/tdlib). This is a native Android mobile application written in Java, Kotlin, and C/C++.
 
 - **Google Play:** https://play.google.com/store/apps/details?id=org.thunderdog.challegram
-- **GitHub:** https://github.com/TGX-Android/Telegram-X
+- **GitHub:** https://github.com/BlusceLabs/Ora
 - **Package ID:** org.thunderdog.challegram
 
 ## Tech Stack
