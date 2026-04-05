@@ -5,9 +5,12 @@ set -e
 # Usage: bash scripts/build-ora.sh [variant]
 #   variant: lollipopX64Debug (default), latestUniversalDebug
 #
-# Required env vars for connectivity (placeholders accepted for APK build):
-#   TELEGRAM_API_ID    — your Telegram API ID
-#   TELEGRAM_API_HASH  — your Telegram API hash
+# Optional env vars (placeholders accepted; app will build without real connectivity):
+#   TELEGRAM_API_ID     — your Telegram API ID         (default: 0)
+#   TELEGRAM_API_HASH   — your Telegram API hash       (default: 00000000000000000000000000000000)
+#   APP_ID              — package name                 (default: com.bluscelabs.ora)
+#   APP_NAME            — app label                   (default: Ora)
+#   APP_DOWNLOAD_URL    — download/release URL         (default: https://github.com/BlusceLabs/Ora)
 
 VARIANT="${1:-lollipopX64Debug}"
 WORKSPACE="$(cd "$(dirname "$0")/.." && pwd)"
@@ -17,15 +20,18 @@ echo "=== Ora Build Script ==="
 echo "Workspace: $WORKSPACE"
 echo "Variant:   $VARIANT"
 
-# ── 1. Submodules ────────────────────────────────────────────────────────────
+# ── 1. Git submodules ─────────────────────────────────────────────────────────
 echo ""
-echo "--- Step 1: Initialize git submodules ---"
-git submodule update --init --recursive 2>&1 || {
-  echo "WARNING: Some submodules could not be fetched (network or permissions)."
-  echo "Continuing — pre-built .a/.so files may already be present."
-}
+echo "--- Step 1: Git submodules ---"
+# Use --depth=1 for speed; fail fast on any error
+if ! git submodule update --init --recursive --depth=1 2>&1; then
+  echo "ERROR: Submodule initialization failed." >&2
+  exit 1
+fi
+SUBMODULE_COUNT=$(git submodule status | wc -l)
+echo "Submodules initialized: $SUBMODULE_COUNT"
 
-# ── 2. Java 21 ───────────────────────────────────────────────────────────────
+# ── 2. Java 21 ────────────────────────────────────────────────────────────────
 echo ""
 echo "--- Step 2: Java 21 ---"
 JAVA21="$HOME/jdk21"
@@ -40,13 +46,12 @@ else
 fi
 export JAVA_HOME="$JAVA21"
 export PATH="$JAVA_HOME/bin:$PATH"
-echo "JAVA_HOME=$JAVA_HOME"
 java -version
 
-# ── 3. Android SDK ───────────────────────────────────────────────────────────
+# ── 3. Android SDK / NDK / CMake ─────────────────────────────────────────────
 echo ""
 echo "--- Step 3: Android SDK / NDK / CMake ---"
-export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+export ANDROID_SDK_ROOT="${ANDROID_SDK_ROOT:-$HOME/Android/Sdk}"
 export ANDROID_HOME="$ANDROID_SDK_ROOT"
 
 if [ ! -d "$ANDROID_SDK_ROOT/cmdline-tools/latest" ]; then
@@ -71,27 +76,46 @@ yes | "$SDKMANAGER" --licenses > /dev/null 2>&1 || true
   yes | "$SDKMANAGER" "cmake;3.22.1"
 echo "SDK ready at $ANDROID_SDK_ROOT"
 
-# ── 4. local.properties ──────────────────────────────────────────────────────
+# ── 4. local.properties ───────────────────────────────────────────────────────
 echo ""
 echo "--- Step 4: local.properties ---"
-API_ID="${TELEGRAM_API_ID:-0}"
-API_HASH="${TELEGRAM_API_HASH:-00000000000000000000000000000000}"
-
-cat > local.properties << EOF
+if [ ! -f local.properties ]; then
+  CPU_COUNT=$(nproc --all 2>/dev/null || echo 4)
+  cat > local.properties << EOF
 sdk.dir=$ANDROID_SDK_ROOT
-APP_ID=$API_ID
-APP_HASH=$API_HASH
+org.gradle.workers.max=$CPU_COUNT
+keystore.file=
+app.id=${APP_ID:-com.bluscelabs.ora}
+app.name=${APP_NAME:-Ora}
+app.download_url=${APP_DOWNLOAD_URL:-https://github.com/BlusceLabs/Ora}
+app.sources_url=${APP_SOURCES_URL:-https://github.com/BlusceLabs/Ora}
+telegram.api_id=${TELEGRAM_API_ID:-0}
+telegram.api_hash=${TELEGRAM_API_HASH:-00000000000000000000000000000000}
 EOF
-echo "local.properties written (API_ID=$API_ID)"
+  echo "local.properties created (telegram.api_id=${TELEGRAM_API_ID:-0})"
+else
+  echo "local.properties already exists — skipping"
+fi
 
-# ── 5. Gradle build ──────────────────────────────────────────────────────────
+# ── 5. Native dependency setup ────────────────────────────────────────────────
 echo ""
-echo "--- Step 5: Gradle build — :app:assemble${VARIANT} ---"
+echo "--- Step 5: Native dependencies (setup.sh --skip-sdk-setup) ---"
+# Export required vars for setup.sh / set-env.sh
+export ANDROID_SDK_ROOT ANDROID_HOME
+if bash scripts/setup.sh --skip-sdk-setup 2>&1; then
+  echo "setup.sh completed successfully"
+else
+  echo "WARNING: setup.sh returned non-zero. Native deps may already be built — continuing."
+fi
+
+# ── 6. Gradle build ───────────────────────────────────────────────────────────
+echo ""
+echo "--- Step 6: Gradle build — :app:assemble${VARIANT} ---"
 ./gradlew --no-daemon ":app:assemble${VARIANT}" 2>&1
 
 echo ""
 echo "=== Build complete! APK: ==="
-find app/build/outputs/apk -name "*.apk" 2>/dev/null | while read apk; do
+find app/build/outputs/apk -name "*.apk" 2>/dev/null | while read -r apk; do
   size=$(du -sh "$apk" 2>/dev/null | cut -f1)
   echo "  $apk  ($size)"
-done || echo "No APK found — check build output above."
+done
