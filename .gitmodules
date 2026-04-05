@@ -16,7 +16,7 @@
         path = app/jni/third_party/ffmpeg
         url = https://github.com/BlusceLabs/FFmpeg
         shallow = true
-        branch = release/6.1
+        branch = master
 [submodule "lz4"]
         path = app/jni/third_party/lz4
         url = https://github.com/lz4/lz4
@@ -50,7 +50,7 @@
         path = tdlib
         url = https://github.com/BlusceLabs/td
         shallow = true
-        branch = main
+        branch = master
 [submodule "jni-utils"]
         path = app/jni/third_party/jni-utils
         url = https://github.com/TGX-Android/jni-utils
@@ -102,12 +102,12 @@
         path = app/jni/tgvoip/third_party/webrtc
         url = https://github.com/BlusceLabs/webrtc
         shallow = true
-        branch = main
+        branch = M123
 [submodule "tgcalls"]
         path = app/jni/tgvoip/third_party/tgcalls
         url = https://github.com/BlusceLabs/tgcalls
         shallow = true
-        branch = main
+        branch = development
 [submodule "libevent"]
         path = app/jni/tgvoip/third_party/libevent
         url = https://github.com/TGX-Android/libevent
