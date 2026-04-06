@@ -3,6 +3,7 @@ resolver = "2"
 members  = [
     "rust/candidate_pipeline",
     "rust/thunder",
+    "rust/phoenix",
 ]
 
 [profile.release]
