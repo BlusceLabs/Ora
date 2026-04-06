@@ -25,7 +25,21 @@ thrift_library(
     },
 )
 
+thrift_library(
+    name = "notification",
+    srcs = ["notification.thrift"],
+    deps  = [":models"],
+    languages = ["java", "scala", "py"],
+    gen_args = {
+        "java": "beans:private-members",
+        "py":   "new_style",
+    },
+)
+
 # Language-specific aliases used by BUILD targets above
-alias(name = "models_java",  actual = ":models")
-alias(name = "models_scala", actual = ":models")
-alias(name = "models_py",    actual = ":models")
+alias(name = "models_java",       actual = ":models")
+alias(name = "models_scala",      actual = ":models")
+alias(name = "models_py",         actual = ":models")
+alias(name = "notification_java", actual = ":notification")
+alias(name = "notification_scala",actual = ":notification")
+alias(name = "notification_py",   actual = ":notification")

@@ -62,11 +62,13 @@ class FeedFilter:
                 while discovery_queue:
                     discovery_post = discovery_queue.pop(0)
                     if discovery_post.post_id not in seen_ids:
-                        result.append(discovery_post)
-                        seen_ids.add(discovery_post.post_id)
+                        if len(result) < limit:
+                            result.append(discovery_post)
+                            seen_ids.add(discovery_post.post_id)
                         break
 
-            result.append(post)
-            seen_ids.add(post.post_id)
+            if len(result) < limit and post.post_id not in seen_ids:
+                result.append(post)
+                seen_ids.add(post.post_id)
 
-        return result
+        return result[:limit]

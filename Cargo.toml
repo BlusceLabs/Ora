@@ -4,6 +4,7 @@ members  = [
     "rust/candidate_pipeline",
     "rust/thunder",
     "rust/phoenix",
+    "rust/representation_scorer",
 ]
 
 [profile.release]

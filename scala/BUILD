@@ -133,6 +133,45 @@ scala_binary(
     deps = [":candidate_sourcer_lib"],
 )
 
+# ─── Social Graph ────────────────────────────────────────────────────────────
+
+scala_library(
+    name = "social_graph_lib",
+    srcs = glob(["social_graph/*.scala"], exclude = ["social_graph/*Test.scala"]),
+    deps = [
+        "//thrift:models_scala",
+    ],
+    scalacopts = ["-Xfatal-warnings", "-deprecation"],
+)
+
+scala_binary(
+    name = "social_graph",
+    main_class = "com.blusce.jamii.social_graph.SocialGraphServer",
+    deps = [":social_graph_lib"],
+)
+
+# ─── MagicRecs (Who To Follow + Push Notifications) ──────────────────────────
+
+scala_library(
+    name = "magic_recs_lib",
+    srcs = glob(["magic_recs/*.scala"], exclude = ["magic_recs/*Test.scala"]),
+    deps = [
+        ":social_graph_lib",
+        ":real_graph_lib",
+        ":simclusters_lib",
+        ":uss_lib",
+        "//thrift:models_scala",
+        "//thrift:notification_scala",
+    ],
+    scalacopts = ["-Xfatal-warnings", "-deprecation"],
+)
+
+scala_binary(
+    name = "magic_recs",
+    main_class = "com.blusce.jamii.magic_recs.MagicRecsServer",
+    deps = [":magic_recs_lib"],
+)
+
 # ─── All Scala Tests ─────────────────────────────────────────────────────────
 
 test_suite(
