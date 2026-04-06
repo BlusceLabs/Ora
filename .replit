@@ -1,4 +1,4 @@
-modules = ["java-graalvm22.3", "nodejs-20"]
+modules = ["java-graalvm22.3", "nodejs-20", "python-3.11"]
 [agent]
 expertMode = true
 
@@ -15,42 +15,23 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Start application"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Build APK"
+args = "Start API"
 
 [[workflows.workflow]]
-name = "Start application"
+name = "Start API"
 author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pip install -r requirements.txt -q && python main.py"
+waitForPort = 5000
 
 [workflows.workflow.metadata]
 outputType = "webview"
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "cd web && pnpm run dev"
-waitForPort = 5000
-
-[[workflows.workflow]]
-name = "Build APK"
-author = "agent"
-
-[workflows.workflow.metadata]
-outputType = "console"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "export JAVA_HOME=~/jdk21 && export PATH=$JAVA_HOME/bin:$PATH && export ANDROID_SDK_ROOT=~/Android/Sdk && export ANDROID_HOME=~/Android/Sdk && export SKIP_SETUP_ERRORS=1 && bash scripts/build-jamii.sh latestArm64Debug"
-
 [[ports]]
 localPort = 5000
 externalPort = 80
-
-[[ports]]
-localPort = 5001
-externalPort = 3000
 
 [deployment]
 deploymentTarget = "autoscale"
