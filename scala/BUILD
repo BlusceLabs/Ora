@@ -172,6 +172,21 @@ scala_binary(
     deps = [":magic_recs_lib"],
 )
 
+# ─── Feature Switches (Decider) ──────────────────────────────────────────────
+
+scala_library(
+    name = "feature_switches_lib",
+    srcs = glob(["feature_switches/*.scala"], exclude = ["feature_switches/*Test.scala"]),
+    deps = [],
+    scalacopts = ["-Xfatal-warnings", "-deprecation"],
+)
+
+scala_binary(
+    name = "feature_switches",
+    main_class = "com.blusce.jamii.feature_switches.FeatureSwitchesServer",
+    deps = [":feature_switches_lib"],
+)
+
 # ─── All Scala Tests ─────────────────────────────────────────────────────────
 
 test_suite(

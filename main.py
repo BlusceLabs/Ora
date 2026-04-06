@@ -1,12 +1,19 @@
 import logging
 import uvicorn
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+
 from data.sample.seed import seed
 from jamii.pipeline import FeedPipeline
 from jamii.graph import RealGraph, UserReputation, SocialProofIndex, InteractionGraph
 from jamii.safety import TrustAndSafetyFilter
 from jamii.embeddings import SimClusters, TopicEmbeddings
-from jamii.api.feed import router, set_pipeline
+from jamii.monitoring import REGISTRY, MetricsMiddleware
+
+from jamii.api.feed     import router as feed_router,     set_pipeline
+from jamii.api.trending import router as trending_router, set_trending_deps
+from jamii.api.search   import router as search_router,   set_search_deps
+from jamii.api.users    import router as users_router,    set_user_deps
 
 logging.basicConfig(
     level=logging.INFO,
@@ -19,11 +26,22 @@ app = FastAPI(
         "Personalized feed pipeline for Jamii — Africa-first super-app. "
         "Architecture inspired by Twitter/the-algorithm and xai-org/x-algorithm."
     ),
-    version="0.2.0",
+    version="0.3.0",
 )
 
-app.include_router(router)
+# ─── Middleware ───────────────────────────────────────────────────────────────
 
+app.add_middleware(MetricsMiddleware)
+
+# ─── Routers ─────────────────────────────────────────────────────────────────
+
+app.include_router(feed_router)
+app.include_router(trending_router)
+app.include_router(search_router)
+app.include_router(users_router)
+
+
+# ─── Startup ─────────────────────────────────────────────────────────────────
 
 @app.on_event("startup")
 def startup():
@@ -31,10 +49,13 @@ def startup():
     users, posts = seed()
     logging.info(f"Seeded {len(users)} users, {len(posts)} posts")
 
+    REGISTRY.user_count.set(len(users))
+    REGISTRY.post_count.set(len(posts))
+
     logging.info("Initializing graph components...")
-    real_graph = RealGraph()
-    reputation = UserReputation()
-    social_proof = SocialProofIndex()
+    real_graph     = RealGraph()
+    reputation     = UserReputation()
+    social_proof   = SocialProofIndex()
     interaction_graph = InteractionGraph()
 
     follow_graph = {uid: u.following for uid, u in users.items()}
@@ -68,15 +89,24 @@ def startup():
         sim_clusters=sim_clusters,
         topic_embeddings=topic_embeddings,
     )
+
+    # ─── Wire all routers to shared state ────────────────────────────────
     set_pipeline(pipeline)
+    set_trending_deps(post_store=posts, topic_embeddings=topic_embeddings)
+    set_search_deps(post_store=posts, user_store=users)
+    set_user_deps(user_store=users)
+
+    REGISTRY.pipeline_ready.set(1.0)
     logging.info("Feed pipeline ready — all components initialized.")
 
+
+# ─── Root ─────────────────────────────────────────────────────────────────────
 
 @app.get("/")
 def root():
     return {
-        "app": "Jamii Feed Algorithm",
-        "version": "0.2.0",
+        "app":     "Jamii Feed Algorithm",
+        "version": "0.3.0",
         "pipeline_stages": [
             "1. Query Hydration (user context)",
             "2. Candidate Sourcing (following, community, trending, graph traversal, discovery)",
@@ -90,12 +120,37 @@ def root():
             "10. Cache (Redis)",
         ],
         "endpoints": {
-            "feed": "POST /feed/",
-            "health": "GET /feed/health",
-            "docs": "GET /docs",
+            "feed":          "POST /feed/",
+            "trending":      "GET  /trending/",
+            "trending_tag":  "GET  /trending/hashtag/{hashtag}",
+            "search":        "GET  /search/?q=<query>",
+            "post":          "GET  /search/posts/{post_id}",
+            "user_profile":  "GET  /users/{user_id}",
+            "following":     "GET  /users/{user_id}/following",
+            "followers":     "GET  /users/{user_id}/followers",
+            "follow":        "POST /users/{user_id}/follow",
+            "unfollow":      "POST /users/{user_id}/unfollow",
+            "signal":        "POST /users/{user_id}/signal",
+            "who_to_follow": "GET  /users/{user_id}/who-to-follow",
+            "metrics":       "GET  /metrics",
+            "health":        "GET  /feed/health",
+            "docs":          "GET  /docs",
         },
     }
 
+
+# ─── Metrics endpoint ────────────────────────────────────────────────────────
+
+@app.get("/metrics", tags=["observability"])
+def get_metrics():
+    """
+    Prometheus-style metrics snapshot.
+    In production, this would emit the Prometheus text exposition format.
+    """
+    return JSONResponse(content=REGISTRY.snapshot())
+
+
+# ─── Entry point ─────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=5000, reload=True)

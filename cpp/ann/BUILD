@@ -29,6 +29,17 @@ cc_binary(
     linkopts = ["-lpthread"],
 )
 
+cc_library(
+    name = "product_quantization",
+    hdrs = ["product_quantization.h"],
+    copts = [
+        "-std=c++20",
+        "-O3",
+        "-march=native",
+        "-Wall",
+    ],
+)
+
 cc_test(
     name = "hnsw_test",
     srcs = ["hnsw_test.cc"],

@@ -78,6 +78,21 @@ java_test(
     test_class = "com.blusce.jamii.topic_social_proof.TopicSocialProofTest",
 )
 
+# ─── Timeline Service ─────────────────────────────────────────────────────────
+
+java_library(
+    name = "timeline_lib",
+    srcs = glob(["timeline/*.java"], exclude = ["timeline/*Test.java"]),
+    deps = [],
+    javacopts = ["-source", "17", "-target", "17"],
+)
+
+java_binary(
+    name = "timeline_service",
+    main_class = "com.blusce.jamii.timeline.TimelineServer",
+    deps = [":timeline_lib"],
+)
+
 # ─── All Java Tests ───────────────────────────────────────────────────────────
 
 test_suite(
