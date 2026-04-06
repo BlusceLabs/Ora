@@ -1,68 +1,137 @@
 # Jamii Feed Algorithm
 
-Feed personalization algorithm for the Jamii super-app by BlusceLabs.
-Africa-first social platform — community + messaging hybrid.
+Standalone Python implementation of a personalized feed pipeline for **Jamii** — BlusceLabs' Africa-first community + messaging super-app. Architecture is directly inspired by Twitter/the-algorithm and xai-org/x-algorithm.
 
-## Architecture
-
-Three-stage pipeline:
-
-1. **Candidate Sourcing** (`jamii/pipeline/sourcer.py`)
-   - Following graph posts
-   - Community posts
-   - Trending by region/language
-   - Discovery (friend-of-friend, same language)
-
-2. **Ranking Engine** (`jamii/pipeline/ranker.py`)
-   - Relationship strength (close friends > following > community > discovery)
-   - Recency (exponential decay)
-   - Engagement velocity (likes, comments, shares, saves)
-   - Content type affinity (per-user preference)
-   - Language match (Swahili, Hausa, Yoruba, Zulu, etc.)
-   - Location proximity (city > country)
-
-3. **Filter & Diversity** (`jamii/pipeline/filter.py`)
-   - Max 2 consecutive posts from same author
-   - Discovery post injection every 10 posts
-   - Feed size enforcement
-
-## Structure
+## Project Structure
 
 ```
 jamii/
-  models/       — User, Post, Community, Event
-  pipeline/     — Sourcer, Ranker, Filter, FeedPipeline
-  signals/      — EventTracker (view, like, share, skip)
-  cache/        — Redis-based FeedCache
-  ml/           — MLScorer (Phase 1: weighted, Phase 2: trained)
-  api/          — FastAPI feed endpoint
-config/         — Settings and ranking weights
-data/sample/    — Seed data generator
-scripts/        — CLI simulation
-tests/          — Pytest test suite
+├── models/          # User, Post, Event, Community dataclasses
+├── pipeline/
+│   ├── sourcer.py      # Stage 1: Candidate sourcing (5 sources)
+│   ├── hydrator.py     # Stage 3: Query + Candidate Hydration
+│   ├── light_ranker.py # Stage 6: Fast pre-rank (engagement formula)
+│   ├── heavy_ranker.py # Stage 7: Full neural-style scoring
+│   ├── diversity.py    # Stage 8: Mix-ratio enforcement + cluster cap
+│   ├── filter.py       # Stage 9: Dedup + same-author cap + discovery
+│   ├── ranker.py       # Legacy single-stage ranker
+│   └── feed.py         # Orchestrator — wires all 10 stages
+├── graph/
+│   ├── real_graph.py        # Real Graph: engagement probability between users
+│   ├── page_rank.py         # Tweepcred: PageRank user reputation
+│   ├── social_proof.py      # Social Proof Index: which friends engaged
+│   └── interaction_graph.py # GraphJet-style traversal for discovery
+├── embeddings/
+│   ├── sim_clusters.py      # SimClusters: community sparse embeddings
+│   └── topic_embeddings.py  # Topic affinity: user interest vectors
+├── safety/
+│   └── trust_safety.py      # Trust & Safety: content + author quality filter
+├── cache/
+│   └── feed_cache.py        # Redis FeedCache with in-memory fallback
+├── api/
+│   └── feed.py              # FastAPI router
+└── events/
+    └── tracker.py           # Event tracking
+config/settings.py      # All weights and configuration
+data/sample/seed.py     # 50 users × 300 posts, 8 African countries
+scripts/simulate.py     # End-to-end pipeline simulation
+tests/                  # pytest test suite
+main.py                 # FastAPI app — port 5000
 ```
 
-## Run
+## 10-Stage Pipeline (Production Architecture)
+
+| Stage | Name | Description |
+|-------|------|-------------|
+| 1 | Query Hydration | Assemble user context: top Real Graph authors, reputation, topic interests |
+| 2 | Candidate Sourcing | Collect ~500 posts: following, community, trending, GraphJet traversal, discovery |
+| 3 | Candidate Hydration | Enrich posts: author reputation, social proof score, topic tags |
+| 4 | Trust & Safety Filter | Remove posts from flagged authors or over-reported posts |
+| 5 | Social Proof Filter | Out-of-network posts need ≥1 connection to have engaged |
+| 6 | Light Ranking | Fast pre-rank using engagement formula → top 40% |
+| 7 | Heavy Ranking | Full scoring: Real Graph + SimClusters + Topic + Reputation |
+| 8 | Diversity Scoring | Enforce 50/30/10/10 mix ratio + max 10 posts per topic cluster |
+| 9 | Feed Filter | Strict dedup + max 3 consecutive same author + discovery injection |
+| 10 | Cache | Redis cache with in-memory fallback |
+
+## Engagement Scoring Formula (from Twitter/X algorithm)
+
+```
+score = Σ weight_i × P(engagement_i) / log(age_hours + 2)
+
+Weights:
+  like:              0.5×
+  retweet:           1.0×
+  reply:            13.5×
+  bookmark:          2.0×
+  profile_click:    12.0×
+  good_click:       11.0×
+  video_50pct:       0.005×
+  negative_feedback: -74.0×
+  report:           -369.0×
+```
+
+## Ranking Signals (Heavy Ranker)
+
+| Signal | Weight | Source |
+|--------|--------|--------|
+| Real Graph score | 25% | Twitter Real Graph |
+| SimCluster similarity | 15% | Twitter SimClusters |
+| Engagement velocity | 15% | X-algorithm formula |
+| Topic affinity | 10% | Topic Social Proof |
+| Social proof | 10% | X-algorithm Social Proof Filter |
+| Recency | 10% | time-decay function |
+| PageRank reputation | 5% | Tweepcred |
+| Language match | 5% | Africa-first |
+| Location proximity | 3% | Africa-first |
+| Content type affinity | 2% | User preference |
+
+## Africa-First Signals
+
+- **Languages**: Swahili (sw), Hausa (ha), Yoruba (yo), Zulu (zu), Igbo (ig), Amharic (am), French (fr), English (en)
+- **Countries**: Kenya, Nigeria, South Africa, Ghana, Ethiopia, Tanzania, Uganda, Senegal
+- Language match is an explicit ranking signal
+- Location proximity (city → country → region) boosts local content
+- Community membership drives candidate sourcing
+
+## API
+
+- **FastAPI** on port 5000
+- `POST /feed/` — generate personalized feed for a user
+- `GET /feed/health` — health check
+- `GET /` — pipeline overview
+- `GET /docs` — Swagger UI
+
+## Running
 
 ```bash
-python main.py           # Start API server
-python scripts/simulate.py  # Run simulation
-pytest tests/            # Run tests
+# Start API
+python main.py
+
+# Run simulation
+python scripts/simulate.py
+
+# Run tests
+pytest tests/
 ```
 
-## Ranking Weights (Phase 1)
+## Key Features (Sources)
 
-| Signal | Weight |
-|---|---|
-| Relationship strength | 30% |
-| Recency | 25% |
-| Engagement velocity | 20% |
-| Content type affinity | 10% |
-| Language match | 10% |
-| Location proximity | 5% |
+From **twitter/the-algorithm**:
+- Real Graph (engagement probability prediction)
+- SimClusters (145k community sparse embeddings)
+- Two-stage Light Ranker → Heavy Ranker
+- Engagement weights (reply 13.5×, negative -74×, report -369×)
+- Tweepcred (PageRank user reputation)
+- Trust & Safety content filtering
+- Topic Social Proof (topic affinity from fav history)
+- GraphJet interaction graph traversal
 
-## ML Roadmap
-
-- **Phase 1** (current): Weighted rule-based scoring
-- **Phase 2**: Logistic regression trained on event data
-- **Phase 3**: Two-Tower Neural Network (user embedding × content embedding)
+From **xai-org/x-algorithm**:
+- Query Hydration (user context pre-fetch)
+- Candidate Hydration (post enrichment post-sourcing)
+- Social Proof Filter (require friend engagement for out-of-network)
+- Author Safety Filter
+- Diversity Scorer (50/30/10/10 mix ratio + cluster caps)
+- Time-decay normalized engagement: `score / log(age + 2)`
+- Side effects pattern (async cache + event logging)
